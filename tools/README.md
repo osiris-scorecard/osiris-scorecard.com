@@ -1,8 +1,46 @@
 # OSIRIS Tools
 
-## Export Converter
+## Batch Import (Recommended)
 
-Converts Chrome extension exports to the accounts.json format.
+The easiest way to import multiple accounts at once.
+
+### Quick Start
+
+1. **Add manual data** (displayName and summary) to `manual-data.json`:
+   ```json
+   {
+     "@bellingcat": {
+       "displayName": "Bellingcat",
+       "summary": "Open-source investigative journalism collective. Highly reliable fact-checking and media verification."
+     },
+     "@account2": {
+       "displayName": "Account Name",
+       "summary": "Brief description..."
+     }
+   }
+   ```
+
+2. **Drop your export files** into `tools/exports/` folder
+
+3. **Run the batch import**:
+   ```bash
+   cd tools
+   node batch-import.js
+   ```
+
+That's it! All accounts will be added/updated in `data/accounts.json`.
+
+4. **Push to GitHub**:
+   ```bash
+   update-and-push.bat
+   ```
+   Or in Git Bash: `./update-and-push.sh`
+
+---
+
+## Single Account Import
+
+For importing one account at a time.
 
 ### Usage
 
@@ -14,23 +52,6 @@ node convert-export.js <export-file.json>
 
 ```bash
 node convert-export.js osiris_@bellingcat_scorecard.json
-```
-
-### Adding Manual Data
-
-Edit the `manualData` object in `convert-export.js` to add display names and summaries:
-
-```javascript
-const manualData = {
-  '@bellingcat': {
-    displayName: 'Bellingcat',
-    summary: 'Open-source investigative journalism collective. Highly reliable fact-checking and media verification.'
-  },
-  '@account2': {
-    displayName: 'Account 2 Name',
-    summary: 'Brief description of account...'
-  }
-};
 ```
 
 ### What Gets Converted

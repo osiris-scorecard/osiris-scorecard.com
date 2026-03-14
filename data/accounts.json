@@ -9,6 +9,33 @@
     "totalPosts": 25,
     "pendingPosts": 0,
     "lastUpdated": "14 Mar 2026",
-    "summary": "Open-source investigative journalism collective. Highly reliable fact-checking and media verification."
+    "summary": "Open-source investigative journalism collective. Highly reliable fact-checking and media verification.",
+    "contentFlags": []
+  },
+  {
+    "id": "colonelhomsi",
+    "handle": "@colonelhomsi",
+    "displayName": "colonelhomsi",
+    "cis": "D+",
+    "factualityScore": 36,
+    "positionTags": [],
+    "totalPosts": 11,
+    "pendingPosts": 0,
+    "lastUpdated": "26 Feb 2026",
+    "summary": "",
+    "contentFlags": []
+  },
+  {
+    "id": "faytuksnetwork",
+    "handle": "@FaytuksNetwork",
+    "displayName": "FaytuksNetwork",
+    "cis": "A",
+    "factualityScore": 89,
+    "positionTags": [],
+    "totalPosts": 25,
+    "pendingPosts": 0,
+    "lastUpdated": "25 Feb 2026",
+    "summary": "",
+    "contentFlags": []
   }
 ]

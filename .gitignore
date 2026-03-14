@@ -17,3 +17,4 @@ Thumbs.db
 
 # Export files (keep these local)
 osiris_*.json
+tools/exports/*.json
