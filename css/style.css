@@ -1,0 +1,815 @@
+/* ============================================================
+   OSIRIS — osiris-scorecard.com
+   Professional Academic Theme
+   Fonts: Georgia (headings) / Inter (body, labels)
+   Palette: Navy / Slate / Professional greens and reds
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary:       #2D7A4F;
+  --primary-dark:  #1e5538;
+  --primary-light: #3A9B64;
+  --accent:        #C9A84C;
+  --accent-light:  #E2C06A;
+
+  --bg-primary:    #FFFFFF;
+  --bg-secondary:  #F8F9FA;
+  --bg-tertiary:   #F0F2F4;
+
+  --border-light:  #E5E7EB;
+  --border:        #D1D5DB;
+  --border-dark:   #9CA3AF;
+
+  --text-primary:  #1F2937;
+  --text-secondary:#4B5563;
+  --text-muted:    #6B7280;
+  --text-dim:      #9CA3AF;
+
+  --grade-a:       #166534;
+  --grade-a-bg:    #F0FDF4;
+  --grade-b:       #1E6F5C;
+  --grade-b-bg:    #E6F7F3;
+  --grade-c:       #CA8A04;
+  --grade-c-bg:    #FEFCE8;
+  --grade-d:       #C2410C;
+  --grade-d-bg:    #FFF7ED;
+  --grade-f:       #991B1B;
+  --grade-f-bg:    #FEF2F2;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-tertiary); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--border-dark); }
+
+/* ── TYPOGRAPHY ── */
+h1, h2, h3, h4 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+
+a { color: var(--primary); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--primary-light); text-decoration: underline; }
+
+/* ── NAV ── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 3rem;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s;
+}
+
+.nav.scrolled {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.nav-logo-mark {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-logo-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.nav-logo-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color 0.2s;
+  text-decoration: none;
+}
+
+.nav-links a:hover, .nav-links a.active {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+/* ── LAYOUT ── */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+.page-wrap { padding-top: 5rem; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  padding: 8rem 0 6rem;
+  background: linear-gradient(to bottom, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+}
+
+.hero-bg-lines {
+  display: none;
+}
+
+.hero-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--primary);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  max-width: 780px;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--primary);
+}
+
+.hero-sub {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 1rem 0 2.5rem;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: 1px solid;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--bg-primary);
+}
+.btn-primary:hover {
+  background: var(--primary-light);
+  border-color: var(--primary-light);
+  color: var(--bg-primary);
+  text-decoration: none;
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text-secondary);
+}
+.btn-ghost:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--bg-secondary);
+  text-decoration: none;
+}
+
+.hero-scroll {
+  display: none;
+}
+
+.hero-scroll-line {
+  display: none;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* ── STAT BAR ── */
+.stat-bar {
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  padding: 2rem 0;
+  margin-bottom: 5rem;
+  background: var(--bg-secondary);
+}
+
+.stat-bar-inner {
+  display: flex;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.stat-value {
+  font-family: Georgia, serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1;
+}
+
+.stat-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+/* ── SECTION ── */
+.section { padding: 5rem 0; }
+.section-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--primary);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.section h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+/* ── GRADE BADGE ── */
+.grade-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 52px;
+  height: 52px;
+  padding: 0 0.5rem;
+  font-family: Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  border: 2px solid;
+  border-radius: 4px;
+}
+
+.grade-a { background: var(--grade-a-bg); border-color: var(--grade-a); color: var(--grade-a); }
+.grade-b { background: var(--grade-b-bg); border-color: var(--grade-b); color: var(--grade-b); }
+.grade-c { background: var(--grade-c-bg); border-color: var(--grade-c); color: var(--grade-c); }
+.grade-d { background: var(--grade-d-bg); border-color: var(--grade-d); color: var(--grade-d); }
+.grade-f { background: var(--grade-f-bg); border-color: var(--grade-f); color: var(--grade-f); }
+
+/* ── SCORECARD CARD ── */
+.scorecard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.scorecard-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 1.75rem;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: block;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.scorecard-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--primary);
+  opacity: 0;
+  transition: opacity 0.2s;
+  border-radius: 6px 0 0 6px;
+}
+
+.scorecard-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+  color: inherit;
+  text-decoration: none;
+}
+
+.scorecard-card:hover::before { opacity: 1; }
+
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.card-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.card-handle {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.card-focus {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.card-summary {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.25rem 0.6rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-light);
+  border-radius: 3px;
+  color: var(--text-secondary);
+}
+
+.tag-stance {
+  background: #FEF9E7;
+  border-color: var(--accent);
+  color: #8B6914;
+  font-weight: 600;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.card-posts {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.card-updated {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+/* Factuality bar */
+.fact-bar {
+  height: 6px;
+  background: var(--border-light);
+  margin-bottom: 1rem;
+  position: relative;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.fact-bar-fill {
+  height: 100%;
+  background: var(--primary);
+  transition: width 0.4s ease;
+}
+
+.fact-bar-label {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+/* ── SEARCH ── */
+.search-wrap {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.search-input {
+  width: 100%;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-primary);
+  padding: 0.9rem 1rem 0.9rem 3rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.search-input::placeholder { color: var(--text-muted); }
+.search-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(45, 122, 79, 0.1);
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+.filter-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.filter-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover, .filter-btn.active {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--bg-primary);
+}
+
+/* ── SCORECARD PAGE ── */
+.scorecard-hero {
+  padding: 7rem 0 3rem;
+  border-bottom: 1px solid var(--border-light);
+  margin-bottom: 3rem;
+}
+
+.scorecard-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.scorecard-grade-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.scorecard-grade-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.scorecard-grade-badge {
+  width: 80px; height: 80px;
+  font-size: 2.5rem;
+}
+
+.scorecard-info { flex: 1; }
+
+.scorecard-handle {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.scorecard-display-name {
+  font-family: Georgia, serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.scorecard-meta {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+.scorecard-meta-item {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.scorecard-meta-item span {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* Breakdown chart */
+.breakdown-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.breakdown-item {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 1.25rem 1rem;
+  text-align: center;
+}
+
+.breakdown-count {
+  font-family: Georgia, serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+
+.breakdown-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+/* ── ABOUT / METHODOLOGY ── */
+.prose-section {
+  padding: 7rem 0 5rem;
+  max-width: 740px;
+}
+
+.prose-section h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 2.5rem 0 1rem;
+  color: var(--text-primary);
+}
+
+.prose-section h3 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin: 2rem 0 0.75rem;
+}
+
+.prose-section p {
+  margin-bottom: 1.25rem;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.prose-section ul {
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+
+.prose-section ul li {
+  padding: 0.4rem 0 0.4rem 1.5rem;
+  position: relative;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.prose-section ul li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.divider {
+  height: 1px;
+  background: var(--border-light);
+  margin: 3rem 0;
+}
+
+/* CIS grade table */
+.grade-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.grade-table th {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  padding: 0.85rem 1rem;
+  text-align: left;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.grade-table td {
+  padding: 0.85rem 1rem;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-light);
+  vertical-align: top;
+}
+
+.grade-table tr:last-child td { border-bottom: none; }
+
+/* ── FOOTER ── */
+.footer {
+  border-top: 1px solid var(--border-light);
+  background: var(--bg-secondary);
+  padding: 3rem 0;
+  margin-top: 5rem;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.footer-logo {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.footer-note {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.footer-links a {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+/* ── INTRO CALLOUT ── */
+.callout {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  border-radius: 6px;
+  padding: 1.5rem 1.75rem;
+  margin: 2rem 0;
+}
+
+.callout p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ── HARD FLAGS ── */
+.hard-flag {
+  background: var(--grade-f-bg);
+  border: 1px solid var(--grade-f);
+  border-left: 4px solid var(--grade-f);
+  border-radius: 6px;
+  padding: 0.85rem 1.25rem;
+  margin-top: 0.75rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--grade-f);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1.25rem; }
+  .container { padding: 0 1.25rem; }
+  .hero h1 { font-size: 2.6rem; }
+  .breakdown-grid { grid-template-columns: repeat(3, 1fr); }
+  .scorecard-header { gap: 1.25rem; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 480px) {
+  .nav-links { display: none; }
+  .breakdown-grid { grid-template-columns: repeat(2, 1fr); }
+}

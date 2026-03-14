@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scorecards — OSIRIS</title>
+  <meta name="description" content="Browse all rated OSINT accounts on OSIRIS. Filter by grade, stance, conflict area, or search by handle.">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <img src="images/logo.png" alt="OSIRIS">
+    </div>
+    <span class="nav-logo-text">OSIRIS</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="scorecards.html">Scorecards</a></li>
+    <li><a href="methodology.html">Methodology</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+</nav>
+
+<main class="page-wrap">
+  <div class="container">
+    <div style="padding: 3rem 0 2rem;">
+      <p class="section-eyebrow">All ratings</p>
+      <h1 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; margin-bottom: 0.75rem;">Scorecards</h1>
+      <p style="color: var(--text-muted); max-width: 520px; font-size: 0.95rem;">All rated accounts. Each score is based on a reviewed sample of posts. Ratings are updated as new posts are scored.</p>
+    </div>
+
+    <!-- Search -->
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input type="text" class="search-input" id="search" placeholder="Search by handle, name, or focus area…">
+    </div>
+
+    <!-- Filters -->
+    <div class="filter-row" id="grade-filters">
+      <button class="filter-btn active" data-grade="all">All grades</button>
+      <button class="filter-btn" data-grade="A">A</button>
+      <button class="filter-btn" data-grade="B">B</button>
+      <button class="filter-btn" data-grade="C">C</button>
+      <button class="filter-btn" data-grade="D">D</button>
+      <button class="filter-btn" data-grade="F">F</button>
+    </div>
+
+    <div style="margin-bottom: 1rem; font-family: 'Share Tech Mono', monospace; font-size: 0.68rem; color: var(--text-muted);">
+      <span id="result-count">Loading…</span>
+    </div>
+
+    <div class="scorecard-grid" id="cards-container"></div>
+
+    <div id="no-results" style="display:none; padding: 3rem 0; text-align: center; color: var(--text-muted); font-family: 'Share Tech Mono', monospace; font-size: 0.8rem; letter-spacing: 0.1em;">
+      No accounts match your search.
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">OSIRIS</div>
+      <ul class="footer-links">
+        <li><a href="scorecards.html">Scorecards</a></li>
+        <li><a href="methodology.html">Methodology</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="footer-note">Independent · No right of reply</div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+let allAccounts = [];
+let activeGrade = 'all';
+let searchTerm = '';
+
+fetch('data/accounts.json')
+  .then(r => r.json())
+  .then(accounts => {
+    allAccounts = accounts;
+    render();
+  });
+
+function render() {
+  const container = document.getElementById('cards-container');
+  const noResults = document.getElementById('no-results');
+  const countEl = document.getElementById('result-count');
+
+  let filtered = allAccounts.filter(a => {
+    const gradeMatch = activeGrade === 'all' || a.cis.charAt(0) === activeGrade;
+    const q = searchTerm.toLowerCase();
+    const textMatch = !q ||
+      a.handle.toLowerCase().includes(q) ||
+      a.displayName.toLowerCase().includes(q) ||
+      a.focus.toLowerCase().includes(q) ||
+      (a.positionTags || []).some(t => t.toLowerCase().includes(q));
+    return gradeMatch && textMatch;
+  });
+
+  container.innerHTML = filtered.map(a => buildCard(a)).join('');
+  noResults.style.display = filtered.length === 0 ? 'block' : 'none';
+  countEl.textContent = `${filtered.length} account${filtered.length !== 1 ? 's' : ''}`;
+}
+
+// Grade filter buttons
+document.querySelectorAll('[data-grade]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-grade]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeGrade = btn.dataset.grade;
+    render();
+  });
+});
+
+// Search
+document.getElementById('search').addEventListener('input', e => {
+  searchTerm = e.target.value;
+  render();
+});
+</script>
+</body>
+</html>

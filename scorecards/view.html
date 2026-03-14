@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scorecard — OSIRIS</title>
+  <link rel="icon" type="image/png" href="../images/logo.png">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <img src="../images/logo.png" alt="OSIRIS">
+    </div>
+    <span class="nav-logo-text">OSIRIS</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../scorecards.html">Scorecards</a></li>
+    <li><a href="../methodology.html">Methodology</a></li>
+    <li><a href="../about.html">About</a></li>
+  </ul>
+</nav>
+
+<main class="page-wrap">
+  <div id="scorecard-content">
+    <!-- populated by JS -->
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">OSIRIS</div>
+      <ul class="footer-links">
+        <li><a href="../scorecards.html">Scorecards</a></li>
+        <li><a href="../methodology.html">Methodology</a></li>
+        <li><a href="../about.html">About</a></li>
+      </ul>
+      <div class="footer-note">Independent · No right of reply</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+  // Get the account ID from URL parameter
+  const urlParams = new URLSearchParams(window.location.search);
+  const id = urlParams.get('id');
+
+  if (!id) {
+    document.getElementById('scorecard-content').innerHTML = '<div class="container" style="padding: 8rem 0;"><p style="color: var(--text-muted);">No account specified.</p><a href="../scorecards.html" class="btn btn-ghost" style="margin-top:1rem;">Back to scorecards</a></div>';
+  } else {
+    fetch('../data/accounts.json')
+      .then(r => r.json())
+      .then(accounts => {
+        const a = accounts.find(x => x.id === id);
+        if (!a) {
+          document.getElementById('scorecard-content').innerHTML = '<div class="container" style="padding: 8rem 0;"><p style="color: var(--text-muted);">Account not found.</p><a href="../scorecards.html" class="btn btn-ghost" style="margin-top:1rem;">Back to scorecards</a></div>';
+          return;
+        }
+
+        document.title = `${a.handle} — OSIRIS`;
+        const gc = gradeClass(a.cis);
+        const color = factBarColor(a.factualityScore);
+        const tags = (a.positionTags || []).map(t => `<span class="tag">${t}</span>`).join('');
+
+        // Profile picture
+        const handleClean = a.handle.replace('@', '');
+        const avatarUrl = `https://unavatar.io/twitter/${handleClean}`;
+        // Use displayName if available, otherwise use handle
+        const displayName = a.displayName || a.handle;
+
+        // Hard-visibility flags
+        const hardFlags = [];
+        if (a.hardFlags) {
+          if (a.hardFlags.undisclosedAI) hardFlags.push('<div class="hard-flag">⚠ Undisclosed AI-generated media detected (M6)</div>');
+          if (a.hardFlags.manipulated) hardFlags.push('<div class="hard-flag">⚠ Manipulated or doctored media detected (M7)</div>');
+        }
+        const hardFlagsHTML = hardFlags.length > 0 ? `<div style="margin-top: 2rem;">${hardFlags.join('')}</div>` : '';
+
+        // Content flags
+        const contentFlags = (a.contentFlags || []).map(f => `
+          <div style="margin-bottom: 1rem;">
+            <strong style="color: var(--text-primary); font-weight: 600;">${f.type}</strong>
+            ${f.severity ? `<span style="font-family: 'Inter', sans-serif; font-size: 0.75rem; color: var(--text-muted); margin-left: 0.5rem;">[${f.severity}]</span>` : ''}
+            ${f.note ? `<p style="margin-top: 0.25rem; font-size: 0.9rem; color: var(--text-secondary);">${f.note}</p>` : ''}
+          </div>
+        `).join('');
+
+        // Content pattern notes
+        const patternNotes = a.contentPatternNotes ? `<p style="font-size: 0.95rem; line-height: 1.7; padding: 1rem; background: var(--bg-tertiary); border-left: 4px solid var(--primary); border-radius: 6px; margin-top: 1.5rem; color: var(--text-secondary);">${a.contentPatternNotes}</p>` : '';
+
+        document.getElementById('scorecard-content').innerHTML = `
+          <div class="container" style="padding: 3rem 0;">
+            <div style="margin-bottom: 2rem;">
+              <a href="../scorecards.html" style="font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 500; color: var(--text-muted);">← All scorecards</a>
+            </div>
+
+            <!-- Scorecard Container -->
+            <div style="max-width: 680px; background: var(--bg-secondary); border: 1px solid var(--border-light); border-radius: 8px; padding: 2.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+
+              <!-- Account Identity -->
+              <div style="margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem;">
+                <img src="${avatarUrl}" alt="${a.handle}" style="width: 64px; height: 64px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
+                <div>
+                  <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--text-primary);">${displayName}</div>
+                  <div style="color: var(--text-secondary); font-size: 1rem;">${a.handle}</div>
+                </div>
+              </div>
+
+              <!-- Scores Side by Side -->
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-light);">
+                <div>
+                  <div style="font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem;">CIS Grade</div>
+                  <div class="grade-badge ${gc}" style="font-size: 2.5rem; padding: 0.5rem 1rem;">${a.cis}</div>
+                </div>
+                <div>
+                  <div style="font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem;">Factuality</div>
+                  <div style="font-family: Georgia, serif; font-size: 2.5rem; font-weight: 700; color: var(--text-primary);">${a.factualityScore / 10}<span style="font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 400; color: var(--text-muted); margin-left: 0.35rem;">/ 10</span></div>
+                  <div class="fact-bar" style="height: 6px; margin-top: 0.75rem;">
+                    <div class="fact-bar-fill" style="width:${a.factualityScore}%; background:${color};"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tags -->
+              ${tags ? `
+              <div style="margin-bottom: 2rem;">
+                <div style="font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem;">Position Tags</div>
+                <div class="card-tags">${tags}</div>
+              </div>
+              ` : ''}
+
+              ${hardFlagsHTML}
+
+              <!-- Review Sample -->
+              <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-light);">
+                <div style="font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem;">Review Sample</div>
+                <p style="font-family: 'Inter', sans-serif; font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 0.5rem;">
+                  <strong style="font-family: Georgia, serif; font-size: 1.5rem; font-weight: 700; color: var(--text-primary);">${a.totalPosts}</strong> posts reviewed
+                </p>
+                ${a.pendingPosts > 0 ? `<p style="font-family: 'Inter', sans-serif; font-size: 0.85rem; color: var(--text-muted);">${a.pendingPosts} pending verification</p>` : ''}
+                <p style="font-family: 'Inter', sans-serif; font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">Last updated ${a.lastUpdated}</p>
+              </div>
+
+              ${contentFlags ? `
+              <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-light);">
+                <div style="font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem;">Content Flags</div>
+                ${contentFlags}
+              </div>
+              ` : ''}
+
+              ${patternNotes ? `
+              <div style="margin-top: 2rem;">
+                ${patternNotes}
+              </div>
+              ` : ''}
+
+            </div>
+
+            <div style="margin-top: 2rem; max-width: 680px;">
+              <p style="font-family: 'Inter', sans-serif; font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">
+                Individual post classifications and media assessments are not displayed publicly. OSIRIS does not offer a right of reply. Scores are based on reviewed posts only. See <a href="../methodology.html">methodology</a> for full details.
+              </p>
+            </div>
+          </div>
+        `;
+      });
+  }
+</script>
+</body>
+</html>

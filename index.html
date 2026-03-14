@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OSIRIS — Open Source Intelligence Reliability & Integrity Scorecard</title>
+  <meta name="description" content="OSIRIS rates social media accounts covering conflicts and geopolitical events for factual accuracy, source transparency, and editorial positioning.">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <img src="images/logo.png" alt="OSIRIS">
+    </div>
+    <span class="nav-logo-text">OSIRIS</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="scorecards.html">Scorecards</a></li>
+    <li><a href="methodology.html">Methodology</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+</nav>
+
+<main>
+  <section class="hero">
+    <div class="hero-bg-lines"></div>
+    <div class="container">
+      <p class="hero-eyebrow">osiris-scorecard.com</p>
+      <h1>Who do you <em>actually</em> trust?</h1>
+      <p class="hero-sub">OSIRIS rates social media accounts covering conflicts and geopolitical events — scoring for factual accuracy, source transparency, and editorial positioning.</p>
+      <div class="hero-cta">
+        <a href="scorecards.html" class="btn btn-primary">Browse Scorecards</a>
+        <a href="methodology.html" class="btn btn-ghost">How We Score</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- Recent Scorecards -->
+    <section class="section">
+      <p class="section-eyebrow">Latest ratings</p>
+      <h2>Recently scored accounts</h2>
+      <div class="scorecard-grid" id="recent-cards">
+        <!-- populated by JS -->
+      </div>
+      <div style="margin-top: 2rem;">
+        <a href="scorecards.html" class="btn btn-ghost">View all scorecards →</a>
+      </div>
+    </section>
+
+    <!-- What is OSIRIS -->
+    <section class="section" style="border-top: 1px solid var(--charcoal-bdr);">
+      <div style="max-width: 660px;">
+        <p class="section-eyebrow">What we do</p>
+        <h2>Transparency in a noisy information environment</h2>
+        <p style="margin-top: 1.25rem; color: var(--text-muted); line-height: 1.8;">
+          During major conflicts, social media accounts become primary news sources for millions of people. Journalists, researchers, and the public cite them regularly — often with little understanding of who runs them, how accurate they are, or what positions they hold.
+        </p>
+        <p style="margin-top: 1rem; color: var(--text-muted); line-height: 1.8;">
+          OSIRIS rates these accounts independently. Every rating is based on a scored sample of posts, with the methodology and weights published openly. An account can hold a clear political stance and still score highly for factual accuracy — we separate those two things.
+        </p>
+        <div style="margin-top: 2rem; display: flex; gap: 2rem; flex-wrap: wrap;">
+          <div>
+            <div style="font-family: 'Share Tech Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; color: var(--malachite-lt); text-transform: uppercase; margin-bottom: 0.4rem;">Primary grade</div>
+            <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--white);">Content Integrity Score (CIS)</div>
+          </div>
+          <div>
+            <div style="font-family: 'Share Tech Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; color: var(--malachite-lt); text-transform: uppercase; margin-bottom: 0.4rem;">Separate metric</div>
+            <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--white);">Factuality Score</div>
+          </div>
+          <div>
+            <div style="font-family: 'Share Tech Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; color: var(--malachite-lt); text-transform: uppercase; margin-bottom: 0.4rem;">Always disclosed</div>
+            <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--white);">Position & Stance Tags</div>
+          </div>
+        </div>
+        <div style="margin-top: 2rem;">
+          <a href="about.html" class="btn btn-ghost">Learn more →</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">OSIRIS</div>
+      <ul class="footer-links">
+        <li><a href="scorecards.html">Scorecards</a></li>
+        <li><a href="methodology.html">Methodology</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="footer-note">Independent · No right of reply</div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  // Populate recent cards from accounts.json
+  fetch('data/accounts.json')
+    .then(r => r.json())
+    .then(accounts => {
+      const container = document.getElementById('recent-cards');
+      const recent = [...accounts].sort((a,b) => new Date(b.lastUpdated) - new Date(a.lastUpdated)).slice(0, 3);
+      recent.forEach(a => {
+        container.innerHTML += buildCard(a);
+      });
+    });
+</script>
+</body>
+</html>

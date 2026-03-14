@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Methodology — OSIRIS</title>
+  <meta name="description" content="How OSIRIS scores accounts — full methodology, weighting, post categories, and grade definitions.">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <img src="images/logo.png" alt="OSIRIS">
+    </div>
+    <span class="nav-logo-text">OSIRIS</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="scorecards.html">Scorecards</a></li>
+    <li><a href="methodology.html">Methodology</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+</nav>
+
+<main class="page-wrap">
+  <div class="container">
+    <div class="prose-section">
+
+      <p class="section-eyebrow" style="padding-top: 2rem;">Methodology</p>
+      <h1 style="font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 300; margin-bottom: 1.5rem;">OSIRIS Methodology & Scoring Framework</h1>
+
+      <p style="font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.1em; margin-bottom: 2rem;">VERSION 1.0</p>
+
+      <p>This document describes the methodology used to evaluate and score social media accounts operating in the open-source intelligence (OSINT) and conflict reporting space. The primary platform assessed is X (formerly Twitter), though the framework is designed to be platform-agnostic.</p>
+
+      <p>The goal of this project is to provide readers with a structured, transparent, and independently produced assessment of the reliability and editorial stance of accounts they may use as sources of information. No score constitutes a recommendation to follow or avoid any account, nor does it represent a judgment on the account holder as an individual. Scores reflect the content produced during the reviewed period only.</p>
+
+      <div class="divider"></div>
+
+      <h2>1. What This Project Is Not</h2>
+
+      <p>Several clarifications are necessary upfront to avoid misrepresentation of the scores:</p>
+
+      <p>This project applies its criteria consistently regardless of which direction a bias runs, naming bias wherever a pattern is evident, whether the bias favours a particular nation, political actor, or ideological position. No stance is treated as a default neutral position.</p>
+
+      <p>A low score does not imply that an account is deliberately deceptive. Errors, poor sourcing habits, and the inherent difficulty of real-time conflict verification all contribute to inaccuracy.</p>
+
+      <p>An identified political or geopolitical stance is not itself a mark against an account. Factual reliability and editorial stance are scored and displayed independently for a reason. An account can hold a clear ideological position and maintain high factual standards simultaneously.</p>
+
+      <p>Scores are time-limited. An account reviewed in one period may have changed by the next. All scores carry a last-reviewed date and should be read accordingly.</p>
+
+      <p>This project accepts no payment from account holders or third parties in connection with scoring decisions.</p>
+
+      <div class="divider"></div>
+
+      <h2>2. Scoring Overview</h2>
+
+      <p>Each account receives three distinct primary outputs. These are designed to tell the reader different things, and should be read as a set rather than in isolation.</p>
+
+      <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--white);">Factuality Score (0.0 to 10.0)</h3>
+
+      <p>A numerical score reflecting the accuracy of the account's direct factual claims and the quality of the sourcing behind them. It assesses whether the account gets facts right and whether the basis for those claims is credible. It is shown publicly so that readers can assess an account's factual track record independently of other considerations.</p>
+
+      <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--white);">Content Integrity Score (CIS): Letter Grade A+ to F</h3>
+
+      <p>The CIS is the primary summary output. It combines factual accuracy with a broader set of integrity considerations: how the account sources and attributes its content, whether the media it posts is genuine and current, whether it presents others' work as its own, and whether its framing is intellectually honest even when no directly falsifiable claim is made. Two accounts with identical Factuality Scores may receive different CIS grades if one systematically uses unverified media or repurposes content without attribution.</p>
+
+      <p>The CIS is expressed as a letter grade rather than a number because it represents a holistic judgement across multiple dimensions, and false precision would misrepresent the nature of that judgement. A scorecard is not published until a sufficient sample of posts has been reviewed to support a reliable assessment.</p>
+
+      <table class="grade-table">
+        <thead>
+          <tr>
+            <th>Grade</th>
+            <th>Meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="grade-badge grade-a" style="width:40px; height:40px; font-size:1.2rem;">A</span></td>
+            <td>Very high reliability. Strong sourcing, high accuracy, appropriate context.</td>
+          </tr>
+          <tr>
+            <td><span class="grade-badge grade-b" style="width:40px; height:40px; font-size:1.2rem;">B</span></td>
+            <td>Good reliability. Generally accurate with minor sourcing gaps or occasional contextual shortfalls.</td>
+          </tr>
+          <tr>
+            <td><span class="grade-badge grade-c" style="width:40px; height:40px; font-size:1.2rem;">C</span></td>
+            <td>Mixed reliability. Noticeable accuracy issues, weak sourcing, or consistent framing problems.</td>
+          </tr>
+          <tr>
+            <td><span class="grade-badge grade-d" style="width:40px; height:40px; font-size:1.2rem;">D</span></td>
+            <td>Poor reliability. Frequent inaccuracies or systematic sourcing failures.</td>
+          </tr>
+          <tr>
+            <td><span class="grade-badge grade-f" style="width:40px; height:40px; font-size:1.2rem;">F</span></td>
+            <td>Very poor reliability. Documented disinformation, fabricated content, or consistent falsehoods.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Grades may carry + or – modifiers within each band.</p>
+
+      <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--white);">Position and Stance Tags (PST)</h3>
+
+      <p>Plain-language descriptors identifying the editorial stance or geopolitical position demonstrated by the account's content. These carry no score value and do not affect either the Factuality Score or the CIS. They are disclosures of patterns identified during the review process, not verdicts. Tags are applied only where a consistent pattern is evident across the reviewed sample. An absence of tags does not mean the account holds no biases, only that none were firmly identified in the analysed sample.</p>
+
+      <div class="divider"></div>
+
+      <h2>3. Post Classification</h2>
+
+      <p>The first step in assessing any post is classification. Every post in a review sample is assigned to one of seven content categories before any scoring takes place. The category determines which scoring dimensions apply to that post and thus the weighting it carries in the account-level scores.</p>
+
+      <table class="grade-table">
+        <thead>
+          <tr>
+            <th style="width: 60px;">Code</th>
+            <th style="width: 140px;">Category</th>
+            <th>Definition</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>A</strong></td>
+            <td>Factual Claim</td>
+            <td>A specific, verifiable assertion about a real-world event: reported troop movements, military strikes, political statements, confirmed casualties, vessel or aircraft positions. These posts carry the greatest weight in the Factuality Score and are assessed for both accuracy and source quality.</td>
+          </tr>
+          <tr>
+            <td><strong>B</strong></td>
+            <td>Analysis / Opinion</td>
+            <td>The account's own interpretation, assessment, or prediction based on events. Cannot always be verified as true or false, but is assessed for framing integrity: whether referenced claims are accurately represented, whether reasoning is consistent with evidence cited, and whether important context has been omitted.</td>
+          </tr>
+          <tr>
+            <td><strong>C</strong></td>
+            <td>Quote / Citation</td>
+            <td>Sharing another source's content with clear, visible credit given. The account is not presenting this as original work. Assessed for accuracy of the material amplified and appropriateness of framing applied to it. Attribution is noted positively.</td>
+          </tr>
+          <tr>
+            <td><strong>D</strong></td>
+            <td>Paraphrase</td>
+            <td>Restating another source's claim in the account's own words, with credit given to the original source. Distinct from Category C (direct quotation or embedding) and from Category F (paraphrase without attribution).</td>
+          </tr>
+          <tr>
+            <td><strong>E</strong></td>
+            <td>Retweet / Boost</td>
+            <td>A direct repost with no added commentary. The account is implicitly endorsing or amplifying the post. At the time of scoring, the reviewer identifies the type of content being boosted, and scoring follows accordingly. Contributes to scores at a reduced rate compared to a direct factual claim.</td>
+          </tr>
+          <tr>
+            <td><strong>F</strong></td>
+            <td>Stolen / Uncredited</td>
+            <td>Content presented as the account's own work that is demonstrably copied or paraphrased from another source without acknowledgement. Carries an inherent integrity penalty within the CIS regardless of whether the underlying content is accurate.</td>
+          </tr>
+          <tr>
+            <td><strong>G</strong></td>
+            <td>Social / Neutral</td>
+            <td>No substantive informational content: greetings, follower milestones, personal updates, memes, or similar. Logged and counted as part of the reviewed sample but excluded from score calculations. May inform the Position and Stance Tags assessment where a post contains a clear editorial endorsement.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="margin-top: 1.5rem;">Not all scoring steps apply to all categories. Category B posts skip the accuracy and source quality steps but receive a framing assessment. Category F posts skip the text source step. Category G posts are logged only. Category E posts follow the scoring steps appropriate to the content type being boosted.</p>
+
+      <div class="callout" style="margin-top: 1.5rem;">
+        <p><strong>The Analysis Flag:</strong> Any post in Categories A, C, D, or E may have the Analysis Flag applied by the reviewer. This is used where a post mixes a direct factual claim with the account's own editorial interpretation or framing in a way that cannot be resolved by category reassignment alone. When the flag is applied, the post receives an additional framing assessment alongside its normal accuracy and source quality steps.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2>4. Accuracy and Source Quality Ratings</h2>
+
+      <p>Posts in categories where factual assessment is applicable are assessed on two dimensions: the accuracy of the claim and the quality of the sourcing behind it. These dimensions are scored independently. A claim can be accurate but based on implausible sourcing, or inaccurate despite citing a credible source.</p>
+
+      <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--white);">Accuracy Rating</h3>
+
+      <p>Each assessable post receives one of the following accuracy ratings:</p>
+
+      <table class="grade-table">
+        <thead>
+          <tr>
+            <th style="width: 140px;">Rating</th>
+            <th>Meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Verified</strong></td>
+            <td>The claim has been confirmed true by a reliable source.</td>
+          </tr>
+          <tr>
+            <td><strong>Likely True</strong></td>
+            <td>Strong evidence supports the claim, though full verification is not yet complete.</td>
+          </tr>
+          <tr>
+            <td><strong>Mostly True</strong></td>
+            <td>The substance of the claim is correct but contains minor errors in detail. The errors do not materially change the picture presented.</td>
+          </tr>
+          <tr>
+            <td><strong>Misleading</strong></td>
+            <td>The post contains true elements, but the overall impression it creates is false or significantly distorted. This rating captures selective use of data, omission of crucial context, or framing that leads a reader to an incorrect conclusion despite no individual statement being outright false.</td>
+          </tr>
+          <tr>
+            <td><strong>Mostly False</strong></td>
+            <td>The core claim is incorrect, though it may contain incidental accurate elements.</td>
+          </tr>
+          <tr>
+            <td><strong>False</strong></td>
+            <td>The claim is demonstrably incorrect.</td>
+          </tr>
+          <tr>
+            <td><strong>Pending</strong></td>
+            <td>The claim cannot be assessed at the time of review, typically because ground truth has not yet emerged. Pending posts are excluded from all score calculations until resolved. The number of pending posts is displayed on the public scorecard.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="margin-top: 1.5rem;">The distinction between Misleading and Mostly False is deliberate. A post that presents accurate facts in a frame designed to mislead is a different kind of problem from a post that simply gets the facts wrong. Both are treated seriously, but the scoring reflects their different character.</p>
+
+      <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--white);">Text Source Quality</h3>
+
+      <p>Alongside accuracy, assessable posts are rated for the credibility of the text sourcing behind the claim. This is not an assessment of whether the information is correct; it is an evaluation of how well-grounded the claim is in the sourcing provided.</p>
+
+      <table class="grade-table">
+        <thead>
+          <tr>
+            <th style="width: 180px;">Rating</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Verified Primary</strong></td>
+            <td>Official documentation, direct statements from named parties, or independently verifiable evidence.</td>
+          </tr>
+          <tr>
+            <td><strong>Credible Secondary</strong></td>
+            <td>Named journalist, established outlet, or documented third-party report.</td>
+          </tr>
+          <tr>
+            <td><strong>Organisation Statement</strong></td>
+            <td>An official statement from a named organisation whose credibility is itself reasonable.</td>
+          </tr>
+          <tr>
+            <td><strong>Anonymous Plausible</strong></td>
+            <td>Anonymous or undisclosed sourcing on a claim consistent with other available information and within the realm of what such a source could plausibly know.</td>
+          </tr>
+          <tr>
+            <td><strong>Anonymous Implausible</strong></td>
+            <td>The account claims access to information it could not credibly possess: leaked operational intelligence, advance knowledge of classified military decisions, or insider access to closed-door processes. Scores poorly regardless of whether subsequent events appear to validate the claim.</td>
+          </tr>
+          <tr>
+            <td><strong>Quote Tweet</strong></td>
+            <td>The claim is drawn from another account's post, shared as a quote tweet.</td>
+          </tr>
+          <tr>
+            <td><strong>Unknown</strong></td>
+            <td>The basis for the claim is not stated and cannot be inferred.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="divider"></div>
+
+      <h2>5. Media Integrity</h2>
+
+      <p>Posts that include video, image, or other media are assessed for the integrity of that media as a secondary dimension, applied alongside the primary category classification. Media source quality is assessed independently of text source quality. Both contribute to the CIS Integrity component separately.</p>
+
+      <p>The use of illustrative or archival media is not in itself a serious concern, provided it is clearly disclosed. Penalties reflect the degree to which media is being used to mislead, and the transparency with which the account handles its provenance.</p>
+
+      <table class="grade-table">
+        <thead>
+          <tr>
+            <th style="width: 60px;">Tag</th>
+            <th style="width: 180px;">Label</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>M0</strong></td>
+            <td>No media</td>
+            <td>Post contains no media.</td>
+          </tr>
+          <tr>
+            <td><strong>M1</strong></td>
+            <td>Verified / Authentic</td>
+            <td>Authentic footage or imagery from the event described, verified as genuine and current.</td>
+          </tr>
+          <tr>
+            <td><strong>M2</strong></td>
+            <td>Illustrative / Unrelated</td>
+            <td>Media used for illustration that is not presented as direct evidence of the event described. Not a penalty: this is normal and legitimate practice when handled transparently.</td>
+          </tr>
+          <tr>
+            <td><strong>M3</strong></td>
+            <td>Archival / Old footage, disclosed</td>
+            <td>Older footage used with a clear note that it is not current. Transparency is noted positively.</td>
+          </tr>
+          <tr>
+            <td><strong>M4</strong></td>
+            <td>Archival / Old footage, undisclosed</td>
+            <td>Older footage presented as current, or not specified as purely illustrative. Penalty severity depends on whether the media is incidentally illustrative or actively used to support a claim it appears to confirm.</td>
+          </tr>
+          <tr>
+            <td><strong>M5</strong></td>
+            <td>AI generated, disclosed</td>
+            <td>Synthetic media clearly labelled as such.</td>
+          </tr>
+          <tr>
+            <td><strong>M6 ★</strong></td>
+            <td>AI generated, undisclosed</td>
+            <td>Synthetic media presented as authentic footage or imagery without disclosure. Triggers a hard-visibility flag on the public scorecard.</td>
+          </tr>
+          <tr>
+            <td><strong>M7 ★</strong></td>
+            <td>Manipulated / Doctored</td>
+            <td>Authentic media that has been edited, cropped, or altered to change its meaning or remove important context. Triggers a hard-visibility flag.</td>
+          </tr>
+          <tr>
+            <td><strong>M8</strong></td>
+            <td>Stolen / Uncredited media</td>
+            <td>Media taken from another creator without attribution.</td>
+          </tr>
+          <tr>
+            <td><strong>M9</strong></td>
+            <td>Unknown / Cannot determine</td>
+            <td>Media whose origin cannot be determined at the time of review. Treated as pending for media integrity purposes.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="margin-top: 1.5rem;"><strong>★</strong> Hard-visibility flags (M6 and M7) appear on the public scorecard regardless of overall CIS grade. They are not averaged into obscurity by a strong performance elsewhere.</p>
+
+      <div class="divider"></div>
+
+      <h2>6. Component Scores and the Content Integrity Score</h2>
+
+      <p>The publicly displayed Factuality Score and the CIS letter grade are each derived from a set of underlying component scores calculated across the reviewed post sample.</p>
+
+      <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--white);">Factuality Score</h3>
+
+      <p>The Factuality Score is calculated from posts making direct factual claims and qualifying reposts. It reflects one question: does this account get its facts right, and are those facts grounded in credible sourcing?</p>
+
+      <p>Per-post scores are calculated from a combination of the accuracy rating, the text source quality rating, and the media integrity rating where media is present. Posts involving stolen content are penalised additionally. Each qualifying post is then weighted by its category and by a recency factor based on the review round it belongs to.</p>
+
+      <p>The score is an accuracy rate, not a count. Volume of accurate posts does not compensate for a poor overall rate. An account that rarely posts but gets its facts right consistently can score as well as a high-volume account with an equivalent accuracy rate.</p>
+
+      <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--white);">Recency Weighting</h3>
+
+      <p>Accounts are reviewed in rounds. Posts from more recent rounds are weighted more heavily in the score calculation, reflecting the greater relevance of current behaviour to a reader's present assessment. An account that substantially improves will see that reflected relatively quickly. One that deteriorates will not be protected by a historically strong track record.</p>
+
+      <p>Posts and media marked Pending are excluded from all score calculations until resolved. If scoring weights are adjusted between methodology releases, all existing account scores are recalculated automatically. No account requires re-review solely because of a methodology update.</p>
+
+      <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--white);">The Content Integrity Score</h3>
+
+      <p>The CIS is calculated from three internal components:</p>
+
+      <ul>
+        <li><strong style="color:var(--white);">Factual component</strong> — Derived from the same underlying data as the Factuality Score. The accuracy and source quality of the account's direct claims and qualifying reposts.</li>
+        <li><strong style="color:var(--white);">Integrity component</strong> — Derived from a combination of media integrity assessments, text and media source quality patterns, and the presence of uncredited content. This component captures how the account operates, independently of whether individual claims happen to be accurate.</li>
+        <li><strong style="color:var(--white);">Framing component</strong> — Derived from analysis and opinion posts, and from any post where the Analysis Flag has been applied. Assesses whether the account's interpretation of events is intellectually honest: whether evidence is fairly represented, whether context is provided, and whether the framing is consistent with the facts as known.</li>
+      </ul>
+
+      <p>These three components are combined to produce the CIS. The principle is published: all three matter, none is ignored, and the CIS has the potential to diverge meaningfully from the Factuality Score where an account's integrity or framing record differs from its raw accuracy. Specific component weights are retained internally and subject to change between methodology releases.</p>
+
+      <p>An account with a high Factuality Score and a lower CIS grade gets its facts right but exhibits integrity or framing concerns. An account with a low Factuality Score will not achieve a high CIS regardless of its integrity component, because factual accuracy is foundational.</p>
+
+      <div class="divider"></div>
+
+      <h2>7. Limitations and Known Constraints</h2>
+
+      <p>This project operates with full awareness of its constraints. The following are honest disclosures:</p>
+
+      <ul>
+        <li><strong style="color:var(--white);">Sample-based assessment</strong> — Reviews are conducted on a structured sample of recent posts rather than an account's complete history. The sample is designed to be representative, but events outside the review window will not be captured.</li>
+        <li><strong style="color:var(--white);">Verification delays</strong> — In real-time conflict reporting, ground truth often emerges days or weeks after an event. Posts that cannot be verified at the time of review are held as pending and excluded from active score calculations until that determination is possible.</li>
+        <li><strong style="color:var(--white);">Account evolution</strong> — Accounts change. A review conducted months ago may not reflect current output. Last-reviewed dates are displayed on every scorecard, and stale reviews are flagged.</li>
+        <li><strong style="color:var(--white);">Accounts change hands</strong> — Some accounts change admins or are sold. This can significantly affect quality, often for the worse, and is not always publicly announced.</li>
+        <li><strong style="color:var(--white);">Stance assessment is interpretive</strong> — Identifying geopolitical stance requires judgment about patterns across posts, not individual statements. The tag system is designed to capture consistent signals rather than isolated instances.</li>
+        <li><strong style="color:var(--white);">No right of response</strong> — Account holders are not contacted before review or assessment publication. The methodology is published in full so that any reader, including the account reviewed, can assess whether it has been applied fairly.</li>
+      </ul>
+
+      <div class="divider"></div>
+
+      <h2>8. Methodology Versioning</h2>
+
+      <p>This document is Version 1.0. The methodology will be reviewed periodically. Where changes are made that affect how scores are calculated, a new version number will be issued and the change documented. Previously reviewed accounts will be recalculated against the updated methodology, where possible, without requiring full re-review.</p>
+
+      <p>The intent is that this methodology improves over time as the project matures and as the information environment it assesses continues to evolve. Transparency about those changes is a commitment of this project.</p>
+
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">OSIRIS</div>
+      <ul class="footer-links">
+        <li><a href="scorecards.html">Scorecards</a></li>
+        <li><a href="methodology.html">Methodology</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="footer-note">Independent · No right of reply</div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
