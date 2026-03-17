@@ -49,27 +49,29 @@ function buildCard(a) {
   const displayName = a.displayName || a.handle;
 
   return `
-  <a class="scorecard-card" href="scorecards/view.html?id=${a.id}">
-    <div class="card-top">
-      <div style="display: flex; align-items: center; gap: 0.75rem; flex: 1;">
-        <img src="${avatarUrl}" alt="${a.handle}" class="card-avatar" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
-        <div style="min-width: 0;">
-          <div class="card-name">${displayName}</div>
-          <div class="card-handle">${a.handle}</div>
+  <a class="scorecard-card" href="scorecards/view.html?id=${a.id}" style="display: flex; flex-direction: column;">
+    <div>
+      <div class="card-top">
+        <div style="display: flex; align-items: center; gap: 0.75rem; flex: 1;">
+          <img src="${avatarUrl}" alt="${a.handle}" class="card-avatar" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
+          <div style="min-width: 0;">
+            <div class="card-name">${displayName}</div>
+            <div class="card-handle">${a.handle}</div>
+          </div>
         </div>
+        <div class="grade-badge ${gc}">${a.cis}</div>
       </div>
-      <div class="grade-badge ${gc}">${a.cis}</div>
+      <div class="fact-bar-label">
+        <span>Factuality</span>
+        <span>${a.factualityScore}%</span>
+      </div>
+      <div class="fact-bar">
+        <div class="fact-bar-fill" style="width:${a.factualityScore}%; background:${color};"></div>
+      </div>
+      ${a.summary ? `<div class="card-summary">${a.summary}</div>` : ''}
+      ${tags ? `<div class="card-tags">${tags}</div>` : ''}
     </div>
-    <div class="fact-bar-label">
-      <span>Factuality</span>
-      <span>${a.factualityScore}%</span>
-    </div>
-    <div class="fact-bar">
-      <div class="fact-bar-fill" style="width:${a.factualityScore}%; background:${color};"></div>
-    </div>
-    ${a.summary ? `<div class="card-summary">${a.summary}</div>` : ''}
-    ${tags ? `<div class="card-tags">${tags}</div>` : ''}
-    <div class="card-footer">
+    <div class="card-footer" style="margin-top: auto;">
       <div class="card-posts">Based on ${a.totalPosts - a.pendingPosts} of ${a.totalPosts} posts${a.pendingPosts > 0 ? ` · ${a.pendingPosts} pending` : ''}</div>
       <div class="card-updated">Updated ${a.lastUpdated}</div>
     </div>

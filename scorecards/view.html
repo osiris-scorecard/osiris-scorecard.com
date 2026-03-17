@@ -72,6 +72,34 @@
         // Use displayName if available, otherwise use handle
         const displayName = a.displayName || a.handle;
 
+        // Grade description
+        const gradeDesc = (() => {
+          const letter = a.cis.charAt(0).toUpperCase();
+          if (letter === 'A') return 'Excellent';
+          if (letter === 'B') return 'Good';
+          if (letter === 'C') return 'Fair';
+          if (letter === 'D') return 'Poor';
+          return 'Failing';
+        })();
+
+        // Factuality warning
+        const factWarning = (() => {
+          if (a.factualityScore < 50) {
+            return {
+              icon: '⚠',
+              color: '#C93D2D',
+              text: 'Account shows significant factual inaccuracies'
+            };
+          } else if (a.factualityScore < 70) {
+            return {
+              icon: '⚠',
+              color: '#C9A84C',
+              text: 'Account shows moderate factual issues'
+            };
+          }
+          return null;
+        })();
+
         // Hard-visibility flags
         const hardFlags = [];
         if (a.hardFlags) {
@@ -106,7 +134,7 @@
                 <img src="${avatarUrl}" alt="${a.handle}" style="width: 64px; height: 64px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
                 <div>
                   <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--text-primary);">${displayName}</div>
-                  <div style="color: var(--text-secondary); font-size: 1rem;">${a.handle}</div>
+                  <a href="https://twitter.com/${handleClean}" target="_blank" rel="noopener noreferrer" style="color: var(--text-secondary); font-size: 1rem; text-decoration: none;">${a.handle}</a>
                 </div>
               </div>
 
@@ -115,13 +143,18 @@
                 <div>
                   <div style="font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem;">CIS Grade</div>
                   <div class="grade-badge ${gc}" style="font-size: 2.5rem; padding: 0.5rem 1rem;">${a.cis}</div>
+                  <p style="font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--text-primary); margin-top: 0.75rem;">${gradeDesc}</p>
+                  <p style="font-family: 'Inter', sans-serif; font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.5;">Composite score for accuracy, sourcing, and media verification.</p>
                 </div>
                 <div>
                   <div style="font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem;">Factuality</div>
-                  <div style="font-family: Georgia, serif; font-size: 2.5rem; font-weight: 700; color: var(--text-primary);">${a.factualityScore / 10}<span style="font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 400; color: var(--text-muted); margin-left: 0.35rem;">/ 10</span></div>
+                  <div style="font-family: Georgia, serif; font-size: 2.5rem; font-weight: 700; color: var(--text-primary);">
+                    ${a.factualityScore / 10}<span style="font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 400; color: var(--text-muted); margin-left: 0.35rem;">/ 10</span>${factWarning ? `<span title="${factWarning.text}" style="font-size: 1.5rem; margin-left: 0.5rem; color: ${factWarning.color}; cursor: help;">${factWarning.icon}</span>` : ''}
+                  </div>
                   <div class="fact-bar" style="height: 6px; margin-top: 0.75rem;">
                     <div class="fact-bar-fill" style="width:${a.factualityScore}%; background:${color};"></div>
                   </div>
+                  <p style="font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--text-muted); margin-top: 0.75rem; line-height: 1.5;">Percentage of claims verified as accurate or mostly accurate.</p>
                 </div>
               </div>
 
@@ -135,16 +168,6 @@
 
               ${hardFlagsHTML}
 
-              <!-- Review Sample -->
-              <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-light);">
-                <div style="font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem;">Review Sample</div>
-                <p style="font-family: 'Inter', sans-serif; font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 0.5rem;">
-                  <strong style="font-family: Georgia, serif; font-size: 1.5rem; font-weight: 700; color: var(--text-primary);">${a.totalPosts}</strong> posts reviewed
-                </p>
-                ${a.pendingPosts > 0 ? `<p style="font-family: 'Inter', sans-serif; font-size: 0.85rem; color: var(--text-muted);">${a.pendingPosts} pending verification</p>` : ''}
-                <p style="font-family: 'Inter', sans-serif; font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">Last updated ${a.lastUpdated}</p>
-              </div>
-
               ${contentFlags ? `
               <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-light);">
                 <div style="font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem;">Content Flags</div>
@@ -157,6 +180,13 @@
                 ${patternNotes}
               </div>
               ` : ''}
+
+              <!-- Footer -->
+              <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-light);">
+                <p style="font-family: 'Inter', sans-serif; font-size: 0.75rem; color: var(--text-muted);">
+                  Based on ${a.totalPosts} post${a.totalPosts !== 1 ? 's' : ''} reviewed${a.pendingPosts > 0 ? ` · ${a.pendingPosts} pending verification` : ''} · Last updated ${a.lastUpdated}
+                </p>
+              </div>
 
             </div>
 
