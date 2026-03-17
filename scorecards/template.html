@@ -18,6 +18,9 @@
     <li><a href="../methodology.html">Methodology</a></li>
     <li><a href="../about.html">About</a></li>
   </ul>
+  <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <main class="page-wrap">
@@ -71,20 +74,20 @@
       // Content flags
       const contentFlags = (a.contentFlags || []).map(f => `
         <div style="margin-bottom: 1rem;">
-          <strong style="color: var(--white);">${f.type}</strong>
-          ${f.severity ? `<span style="font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; color: var(--text-muted); margin-left: 0.5rem;">[${f.severity}]</span>` : ''}
-          ${f.note ? `<p style="margin-top: 0.25rem; font-size: 0.9rem;">${f.note}</p>` : ''}
+          <strong style="color: var(--text-primary);">${f.type}</strong>
+          ${f.severity ? `<span style="font-family: 'Inter', sans-serif; font-size: 0.75rem; color: var(--text-muted); margin-left: 0.5rem;">[${f.severity}]</span>` : ''}
+          ${f.note ? `<p style="margin-top: 0.25rem; font-size: 0.9rem; color: var(--text-secondary);">${f.note}</p>` : ''}
         </div>
       `).join('');
 
       // Content pattern notes
-      const patternNotes = a.contentPatternNotes ? `<p style="font-size: 0.95rem; line-height: 1.7; padding: 1rem; background: var(--charcoal-deep); border-left: 3px solid var(--malachite-lt); margin-top: 1.5rem;">${a.contentPatternNotes}</p>` : '';
+      const patternNotes = a.contentPatternNotes ? `<p style="font-size: 0.95rem; line-height: 1.7; padding: 1rem; background: var(--bg-tertiary); border: 1px solid var(--border); border-top: 2px solid var(--primary); border-radius: 6px; margin-top: 1.5rem; color: var(--text-secondary);">${a.contentPatternNotes}</p>` : '';
 
       document.getElementById('scorecard-content').innerHTML = `
         <div class="scorecard-hero">
           <div class="container">
             <div style="margin-bottom: 1.5rem;">
-              <a href="../scorecards.html" style="font-family: 'Share Tech Mono', monospace; font-size: 0.68rem; letter-spacing: 0.15em; color: var(--text-muted); text-transform: uppercase;">← All scorecards</a>
+              <a href="../scorecards.html" style="font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 500; color: var(--text-muted);">← All scorecards</a>
             </div>
             <div class="scorecard-header">
               <div class="scorecard-grade-wrap">
@@ -110,14 +113,14 @@
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; flex-wrap: wrap; padding-bottom: 3rem;" class="scorecard-body">
 
             <div>
-              <h3 style="font-family: 'Share Tech Mono', monospace; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--malachite-lt); margin-bottom: 1rem;">Summary</h3>
-              <p style="color: var(--text); font-size: 0.95rem; line-height: 1.8;">${a.summary}</p>
+              <h3 style="font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: var(--primary); margin-bottom: 1rem;">Summary</h3>
+              <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8;">${a.summary}</p>
 
               <div style="margin-top: 2.5rem;">
-                <h3 style="font-family: 'Share Tech Mono', monospace; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--malachite-lt); margin-bottom: 1rem;">Factuality Score</h3>
+                <h3 style="font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: var(--primary); margin-bottom: 1rem;">Factuality Score</h3>
                 <div class="fact-bar-label">
-                  <span style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--white);">${a.factualityScore / 10}</span>
-                  <span style="font-family: 'Share Tech Mono', monospace; font-size: 0.9rem; color: var(--text-muted); margin-left: 0.5rem;">/ 10.0</span>
+                  <span style="font-family: Georgia, serif; font-size: 2rem; color: var(--text-primary);">${a.factualityScore / 10}</span>
+                  <span style="font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--text-muted); margin-left: 0.5rem;">/ 10.0</span>
                 </div>
                 <div class="fact-bar" style="height: 6px; margin-top: 0.5rem;">
                   <div class="fact-bar-fill" style="width:${a.factualityScore}%; background:${color};"></div>
@@ -128,16 +131,16 @@
             </div>
 
             <div>
-              <h3 style="font-family: 'Share Tech Mono', monospace; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--malachite-lt); margin-bottom: 1rem;">Review Sample</h3>
-              <p style="font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; color: var(--text); margin-bottom: 0.5rem; letter-spacing: 0.05em;">
-                <strong style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--white); display: block; margin-bottom: 0.25rem;">${a.totalPosts}</strong>
+              <h3 style="font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: var(--primary); margin-bottom: 1rem;">Review Sample</h3>
+              <p style="font-family: 'Inter', sans-serif; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">
+                <strong style="font-family: Georgia, serif; font-size: 1.8rem; color: var(--text-primary); display: block; margin-bottom: 0.25rem;">${a.totalPosts}</strong>
                 posts reviewed
               </p>
-              ${a.pendingPosts > 0 ? `<p style="font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; color: var(--text-muted); letter-spacing: 0.1em;">${a.pendingPosts} pending verification</p>` : ''}
+              ${a.pendingPosts > 0 ? `<p style="font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--text-muted);">${a.pendingPosts} pending verification</p>` : ''}
 
               ${contentFlags ? `
               <div style="margin-top: 2.5rem;">
-                <h3 style="font-family: 'Share Tech Mono', monospace; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--malachite-lt); margin-bottom: 1rem;">Content Flags</h3>
+                <h3 style="font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: var(--primary); margin-bottom: 1rem;">Content flags</h3>
                 ${contentFlags}
               </div>
               ` : ''}
@@ -145,8 +148,8 @@
 
           </div>
 
-          <div style="padding: 2rem 0; border-top: 1px solid var(--charcoal-bdr);">
-            <p style="font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; color: var(--text-dim); letter-spacing: 0.1em;">
+          <div style="padding: 2rem 0; border-top: 1px solid var(--border-light);">
+            <p style="font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--text-dim);">
               Individual post classifications and media assessments are not displayed publicly. OSIRIS does not offer a right of reply. Scores are based on reviewed posts only. See <a href="../methodology.html">methodology</a> for full details.
             </p>
           </div>

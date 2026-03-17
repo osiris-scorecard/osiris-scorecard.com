@@ -22,6 +22,9 @@
     <li><a href="methodology.html">Methodology</a></li>
     <li><a href="about.html">About</a></li>
   </ul>
+  <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <main class="page-wrap">
@@ -31,7 +34,7 @@
       <p class="section-eyebrow" style="padding-top: 2rem;">Methodology</p>
       <h1 style="font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 300; margin-bottom: 1.5rem;">OSIRIS Methodology & Scoring Framework</h1>
 
-      <p style="font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.1em; margin-bottom: 2rem;">VERSION 1.0</p>
+      <p style="font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem;">Version 1.0</p>
 
       <p>This document describes the methodology used to evaluate and score social media accounts operating in the open-source intelligence (OSINT) and conflict reporting space. The primary platform assessed is X (formerly Twitter), though the framework is designed to be platform-agnostic.</p>
 
@@ -59,11 +62,11 @@
 
       <p>Each account receives three distinct primary outputs. These are designed to tell the reader different things, and should be read as a set rather than in isolation.</p>
 
-      <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--white);">Factuality Score (0.0 to 10.0)</h3>
+      <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--text-primary);">Factuality Score (0.0 to 10.0)</h3>
 
       <p>A numerical score reflecting the accuracy of the account's direct factual claims and the quality of the sourcing behind them. It assesses whether the account gets facts right and whether the basis for those claims is credible. It is shown publicly so that readers can assess an account's factual track record independently of other considerations.</p>
 
-      <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--white);">Content Integrity Score (CIS): Letter Grade A+ to F</h3>
+      <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--text-primary);">Content Integrity Score (CIS): Letter Grade A+ to F</h3>
 
       <p>The CIS is the primary summary output. It combines factual accuracy with a broader set of integrity considerations: how the account sources and attributes its content, whether the media it posts is genuine and current, whether it presents others' work as its own, and whether its framing is intellectually honest even when no directly falsifiable claim is made. Two accounts with identical Factuality Scores may receive different CIS grades if one systematically uses unverified media or repurposes content without attribution.</p>
 
@@ -102,7 +105,7 @@
 
       <p>Grades may carry + or – modifiers within each band.</p>
 
-      <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--white);">Position and Stance Tags (PST)</h3>
+      <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--text-primary);">Position and Stance Tags (PST)</h3>
 
       <p>Plain-language descriptors identifying the editorial stance or geopolitical position demonstrated by the account's content. These carry no score value and do not affect either the Factuality Score or the CIS. They are disclosures of patterns identified during the review process, not verdicts. Tags are applied only where a consistent pattern is evident across the reviewed sample. An absence of tags does not mean the account holds no biases, only that none were firmly identified in the analysed sample.</p>
 
@@ -171,7 +174,7 @@
 
       <p>Posts in categories where factual assessment is applicable are assessed on two dimensions: the accuracy of the claim and the quality of the sourcing behind it. These dimensions are scored independently. A claim can be accurate but based on implausible sourcing, or inaccurate despite citing a credible source.</p>
 
-      <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--white);">Accuracy Rating</h3>
+      <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--text-primary);">Accuracy Rating</h3>
 
       <p>Each assessable post receives one of the following accuracy ratings:</p>
 
@@ -216,7 +219,7 @@
 
       <p style="margin-top: 1.5rem;">The distinction between Misleading and Mostly False is deliberate. A post that presents accurate facts in a frame designed to mislead is a different kind of problem from a post that simply gets the facts wrong. Both are treated seriously, but the scoring reflects their different character.</p>
 
-      <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--white);">Text Source Quality</h3>
+      <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--text-primary);">Text Source Quality</h3>
 
       <p>Alongside accuracy, assessable posts are rated for the credibility of the text sourcing behind the claim. This is not an assessment of whether the information is correct; it is an evaluation of how well-grounded the claim is in the sourcing provided.</p>
 
@@ -337,7 +340,7 @@
 
       <p>The publicly displayed Factuality Score and the CIS letter grade are each derived from a set of underlying component scores calculated across the reviewed post sample.</p>
 
-      <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--white);">Factuality Score</h3>
+      <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--text-primary);">Factuality Score</h3>
 
       <p>The Factuality Score is calculated from posts making direct factual claims and qualifying reposts. It reflects one question: does this account get its facts right, and are those facts grounded in credible sourcing?</p>
 
@@ -345,20 +348,20 @@
 
       <p>The score is an accuracy rate, not a count. Volume of accurate posts does not compensate for a poor overall rate. An account that rarely posts but gets its facts right consistently can score as well as a high-volume account with an equivalent accuracy rate.</p>
 
-      <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--white);">Recency Weighting</h3>
+      <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--text-primary);">Recency Weighting</h3>
 
       <p>Accounts are reviewed in rounds. Posts from more recent rounds are weighted more heavily in the score calculation, reflecting the greater relevance of current behaviour to a reader's present assessment. An account that substantially improves will see that reflected relatively quickly. One that deteriorates will not be protected by a historically strong track record.</p>
 
       <p>Posts and media marked Pending are excluded from all score calculations until resolved. If scoring weights are adjusted between methodology releases, all existing account scores are recalculated automatically. No account requires re-review solely because of a methodology update.</p>
 
-      <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--white);">The Content Integrity Score</h3>
+      <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--text-primary);">The Content Integrity Score</h3>
 
       <p>The CIS is calculated from three internal components:</p>
 
       <ul>
-        <li><strong style="color:var(--white);">Factual component</strong> — Derived from the same underlying data as the Factuality Score. The accuracy and source quality of the account's direct claims and qualifying reposts.</li>
-        <li><strong style="color:var(--white);">Integrity component</strong> — Derived from a combination of media integrity assessments, text and media source quality patterns, and the presence of uncredited content. This component captures how the account operates, independently of whether individual claims happen to be accurate.</li>
-        <li><strong style="color:var(--white);">Framing component</strong> — Derived from analysis and opinion posts, and from any post where the Analysis Flag has been applied. Assesses whether the account's interpretation of events is intellectually honest: whether evidence is fairly represented, whether context is provided, and whether the framing is consistent with the facts as known.</li>
+        <li><strong style="color: var(--text-primary);">Factual component</strong> — Derived from the same underlying data as the Factuality Score. The accuracy and source quality of the account's direct claims and qualifying reposts.</li>
+        <li><strong style="color: var(--text-primary);">Integrity component</strong> — Derived from a combination of media integrity assessments, text and media source quality patterns, and the presence of uncredited content. This component captures how the account operates, independently of whether individual claims happen to be accurate.</li>
+        <li><strong style="color: var(--text-primary);">Framing component</strong> — Derived from analysis and opinion posts, and from any post where the Analysis Flag has been applied. Assesses whether the account's interpretation of events is intellectually honest: whether evidence is fairly represented, whether context is provided, and whether the framing is consistent with the facts as known.</li>
       </ul>
 
       <p>These three components are combined to produce the CIS. The principle is published: all three matter, none is ignored, and the CIS has the potential to diverge meaningfully from the Factuality Score where an account's integrity or framing record differs from its raw accuracy. Specific component weights are retained internally and subject to change between methodology releases.</p>
@@ -372,12 +375,12 @@
       <p>This project operates with full awareness of its constraints. The following are honest disclosures:</p>
 
       <ul>
-        <li><strong style="color:var(--white);">Sample-based assessment</strong> — Reviews are conducted on a structured sample of recent posts rather than an account's complete history. The sample is designed to be representative, but events outside the review window will not be captured.</li>
-        <li><strong style="color:var(--white);">Verification delays</strong> — In real-time conflict reporting, ground truth often emerges days or weeks after an event. Posts that cannot be verified at the time of review are held as pending and excluded from active score calculations until that determination is possible.</li>
-        <li><strong style="color:var(--white);">Account evolution</strong> — Accounts change. A review conducted months ago may not reflect current output. Last-reviewed dates are displayed on every scorecard, and stale reviews are flagged.</li>
-        <li><strong style="color:var(--white);">Accounts change hands</strong> — Some accounts change admins or are sold. This can significantly affect quality, often for the worse, and is not always publicly announced.</li>
-        <li><strong style="color:var(--white);">Stance assessment is interpretive</strong> — Identifying geopolitical stance requires judgment about patterns across posts, not individual statements. The tag system is designed to capture consistent signals rather than isolated instances.</li>
-        <li><strong style="color:var(--white);">No right of response</strong> — Account holders are not contacted before review or assessment publication. The methodology is published in full so that any reader, including the account reviewed, can assess whether it has been applied fairly.</li>
+        <li><strong style="color: var(--text-primary);">Sample-based assessment</strong> — Reviews are conducted on a structured sample of recent posts rather than an account's complete history. The sample is designed to be representative, but events outside the review window will not be captured.</li>
+        <li><strong style="color: var(--text-primary);">Verification delays</strong> — In real-time conflict reporting, ground truth often emerges days or weeks after an event. Posts that cannot be verified at the time of review are held as pending and excluded from active score calculations until that determination is possible.</li>
+        <li><strong style="color: var(--text-primary);">Account evolution</strong> — Accounts change. A review conducted months ago may not reflect current output. Last-reviewed dates are displayed on every scorecard, and stale reviews are flagged.</li>
+        <li><strong style="color: var(--text-primary);">Accounts change hands</strong> — Some accounts change admins or are sold. This can significantly affect quality, often for the worse, and is not always publicly announced.</li>
+        <li><strong style="color: var(--text-primary);">Stance assessment is interpretive</strong> — Identifying geopolitical stance requires judgment about patterns across posts, not individual statements. The tag system is designed to capture consistent signals rather than isolated instances.</li>
+        <li><strong style="color: var(--text-primary);">No right of response</strong> — Account holders are not contacted before review or assessment publication. The methodology is published in full so that any reader, including the account reviewed, can assess whether it has been applied fairly.</li>
       </ul>
 
       <div class="divider"></div>

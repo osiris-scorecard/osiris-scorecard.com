@@ -8,6 +8,16 @@ if (nav) {
   });
 }
 
+// Mobile hamburger menu
+const navToggle = document.querySelector('.nav-toggle');
+if (navToggle) {
+  navToggle.addEventListener('click', () => {
+    const navEl = navToggle.closest('.nav');
+    const expanded = navEl.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', expanded);
+  });
+}
+
 // Active nav link
 (function() {
   const page = window.location.pathname.split('/').pop() || 'index.html';

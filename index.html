@@ -22,13 +22,15 @@
     <li><a href="methodology.html">Methodology</a></li>
     <li><a href="about.html">About</a></li>
   </ul>
+  <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <main>
   <section class="hero">
     <div class="hero-bg-lines"></div>
     <div class="container">
-      <p class="hero-eyebrow">osiris-scorecard.com</p>
       <h1>Who are you <em>actually</em> trusting?</h1>
       <p class="hero-sub">OSIRIS reviews social media accounts that provide coverage of conflicts and geopolitical events. We release scoring based on the factual accuracy, source transparency, and editorial positioning of these accounts.</p>
       <div class="hero-cta">
@@ -45,7 +47,7 @@
     <!-- Recent Scorecards -->
     <section class="section">
       <p class="section-eyebrow">Latest ratings</p>
-      <h2>Recently scores</h2>
+      <h2>Recent scores</h2>
       <div class="scorecard-grid" id="recent-cards">
         <!-- populated by JS -->
       </div>
@@ -55,7 +57,7 @@
     </section>
 
     <!-- What is OSIRIS -->
-    <section class="section" style="border-top: 1px solid var(--charcoal-bdr);">
+    <section class="section" style="border-top: 1px solid var(--border-light);">
       <div style="max-width: 660px;">
         <p class="section-eyebrow">What we do</p>
         <h2>Trust in a noisy and fast paced information environment</h2>
@@ -67,16 +69,16 @@
         </p>
         <div style="margin-top: 2rem; display: flex; gap: 2rem; flex-wrap: wrap;">
           <div>
-            <div style="font-family: 'Share Tech Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; color: var(--malachite-lt); text-transform: uppercase; margin-bottom: 0.4rem;">Primary grade</div>
-            <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--white);">Content Integrity Score (CIS)</div>
+            <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem;">Primary grade</div>
+            <div style="font-family: Georgia, serif; font-size: 1.1rem; color: var(--text-primary); font-weight: 600;">Content Integrity Score (CIS)</div>
           </div>
           <div>
-            <div style="font-family: 'Share Tech Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; color: var(--malachite-lt); text-transform: uppercase; margin-bottom: 0.4rem;">Separate metric</div>
-            <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--white);">Factuality Score</div>
+            <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem;">Separate metric</div>
+            <div style="font-family: Georgia, serif; font-size: 1.1rem; color: var(--text-primary); font-weight: 600;">Factuality Score</div>
           </div>
           <div>
-            <div style="font-family: 'Share Tech Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; color: var(--malachite-lt); text-transform: uppercase; margin-bottom: 0.4rem;">Always disclosed</div>
-            <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--white);">Position & Stance Tags</div>
+            <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem;">Always disclosed</div>
+            <div style="font-family: Georgia, serif; font-size: 1.1rem; color: var(--text-primary); font-weight: 600;">Position & Stance Tags</div>
           </div>
         </div>
         <div style="margin-top: 2rem;">

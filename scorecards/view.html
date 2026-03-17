@@ -21,6 +21,9 @@
     <li><a href="../methodology.html">Methodology</a></li>
     <li><a href="../about.html">About</a></li>
   </ul>
+  <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <main class="page-wrap">
@@ -118,7 +121,7 @@
         `).join('');
 
         // Content pattern notes
-        const patternNotes = a.contentPatternNotes ? `<p style="font-size: 0.95rem; line-height: 1.7; padding: 1rem; background: var(--bg-tertiary); border-left: 4px solid var(--primary); border-radius: 6px; margin-top: 1.5rem; color: var(--text-secondary);">${a.contentPatternNotes}</p>` : '';
+        const patternNotes = a.contentPatternNotes ? `<p style="font-size: 0.95rem; line-height: 1.7; padding: 1rem; background: var(--bg-tertiary); border: 1px solid var(--border); border-top: 2px solid var(--primary); border-radius: 6px; margin-top: 1.5rem; color: var(--text-secondary);">${a.contentPatternNotes}</p>` : '';
 
         document.getElementById('scorecard-content').innerHTML = `
           <div class="container" style="padding: 3rem 0;">
@@ -141,13 +144,13 @@
               <!-- Scores Side by Side -->
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-light);">
                 <div>
-                  <div style="font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem;">CIS Grade</div>
+                  <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.75rem;">CIS Grade</div>
                   <div class="grade-badge ${gc}" style="font-size: 2.5rem; padding: 0.5rem 1rem;">${a.cis}</div>
                   <p style="font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--text-primary); margin-top: 0.75rem;">${gradeDesc}</p>
                   <p style="font-family: 'Inter', sans-serif; font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.5;">Composite score for accuracy, sourcing, and media verification.</p>
                 </div>
                 <div>
-                  <div style="font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem;">Factuality</div>
+                  <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.75rem;">Factuality</div>
                   <div style="font-family: Georgia, serif; font-size: 2.5rem; font-weight: 700; color: var(--text-primary);">
                     ${a.factualityScore / 10}<span style="font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 400; color: var(--text-muted); margin-left: 0.35rem;">/ 10</span>${factWarning ? `<span title="${factWarning.text}" style="font-size: 1.5rem; margin-left: 0.5rem; color: ${factWarning.color}; cursor: help;">${factWarning.icon}</span>` : ''}
                   </div>
@@ -161,7 +164,7 @@
               <!-- Tags -->
               ${tags ? `
               <div style="margin-bottom: 2rem;">
-                <div style="font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem;">Position Tags</div>
+                <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.75rem;">Position Tags</div>
                 <div class="card-tags">${tags}</div>
               </div>
               ` : ''}
@@ -170,7 +173,7 @@
 
               ${contentFlags ? `
               <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-light);">
-                <div style="font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem;">Content Flags</div>
+                <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.75rem;">Content Flags</div>
                 ${contentFlags}
               </div>
               ` : ''}

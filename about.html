@@ -22,6 +22,9 @@
     <li><a href="methodology.html">Methodology</a></li>
     <li><a href="about.html">About</a></li>
   </ul>
+  <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <main class="page-wrap">
@@ -44,22 +47,22 @@
       <p>Every account receives three distinct outputs, designed to answer different questions about reliability:</p>
 
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem;">
-        <div style="padding: 1.5rem; background: var(--charcoal-deep); border: 1px solid var(--charcoal-bdr); border-radius: 4px;">
-          <h3 style="font-family: 'Share Tech Mono', monospace; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--malachite-lt); margin-bottom: 0.75rem;">Factuality Score</h3>
-          <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--white); margin-bottom: 0.75rem;">0.0 to 10.0</p>
-          <p style="font-size: 0.9rem; color: var(--text); line-height: 1.6;">Does this account get its facts right? Are its claims grounded in credible sourcing?</p>
+        <div style="padding: 1.5rem; background: var(--bg-secondary); border: 1px solid var(--border-light); border-radius: 4px;">
+          <h3 style="font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: var(--primary); margin-bottom: 0.75rem;">Factuality Score</h3>
+          <p style="font-family: Georgia, serif; font-size: 1.8rem; color: var(--text-primary); margin-bottom: 0.75rem;">0.0 to 10.0</p>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">Does this account get its facts right? Are its claims grounded in credible sourcing?</p>
         </div>
 
-        <div style="padding: 1.5rem; background: var(--charcoal-deep); border: 1px solid var(--charcoal-bdr); border-radius: 4px;">
-          <h3 style="font-family: 'Share Tech Mono', monospace; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--malachite-lt); margin-bottom: 0.75rem;">Content Integrity Score</h3>
-          <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--white); margin-bottom: 0.75rem;">A+ to F</p>
-          <p style="font-size: 0.9rem; color: var(--text); line-height: 1.6;">How does this account operate? Does it use genuine media, credit sources, and frame events honestly?</p>
+        <div style="padding: 1.5rem; background: var(--bg-secondary); border: 1px solid var(--border-light); border-radius: 4px;">
+          <h3 style="font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: var(--primary); margin-bottom: 0.75rem;">Content Integrity Score</h3>
+          <p style="font-family: Georgia, serif; font-size: 1.8rem; color: var(--text-primary); margin-bottom: 0.75rem;">A+ to F</p>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">How does this account operate? Does it use genuine media, credit sources, and frame events honestly?</p>
         </div>
 
-        <div style="padding: 1.5rem; background: var(--charcoal-deep); border: 1px solid var(--charcoal-bdr); border-radius: 4px;">
-          <h3 style="font-family: 'Share Tech Mono', monospace; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--malachite-lt); margin-bottom: 0.75rem;">Position & Stance Tags</h3>
-          <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--white); margin-bottom: 0.75rem;">Descriptive</p>
-          <p style="font-size: 0.9rem; color: var(--text); line-height: 1.6;">What editorial or geopolitical position does this account demonstrate? Tags are disclosures, not verdicts.</p>
+        <div style="padding: 1.5rem; background: var(--bg-secondary); border: 1px solid var(--border-light); border-radius: 4px;">
+          <h3 style="font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: var(--primary); margin-bottom: 0.75rem;">Position & Stance Tags</h3>
+          <p style="font-family: Georgia, serif; font-size: 1.8rem; color: var(--text-primary); margin-bottom: 0.75rem;">Descriptive</p>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">What editorial or geopolitical position does this account demonstrate? Tags are disclosures, not verdicts.</p>
         </div>
       </div>
 
@@ -73,11 +76,11 @@
 
       <p>Each account is assessed against a reviewed sample of posts. Every post is classified by type (Factual Claim, Analysis, Quote, Paraphrase, Retweet, Stolen Content, or Social), then rated on the dimensions appropriate to that category.</p>
 
-      <p><strong style="color:var(--white);">Factual claims</strong> are assessed for accuracy and source quality. Did the event happen as described? Is the sourcing credible?</p>
+      <p><strong style="color: var(--text-primary);">Factual claims</strong> are assessed for accuracy and source quality. Did the event happen as described? Is the sourcing credible?</p>
 
-      <p><strong style="color:var(--white);">Analysis and opinion</strong> are assessed for framing integrity. Is the evidence fairly represented? Is context provided?</p>
+      <p><strong style="color: var(--text-primary);">Analysis and opinion</strong> are assessed for framing integrity. Is the evidence fairly represented? Is context provided?</p>
 
-      <p><strong style="color:var(--white);">Media</strong> is checked separately. Is this imagery genuine and current, or is it archival footage, AI-generated, or manipulated?</p>
+      <p><strong style="color: var(--text-primary);">Media</strong> is checked separately. Is this imagery genuine and current, or is it archival footage, AI-generated, or manipulated?</p>
 
       <p>More recent posts are weighted more heavily than older ones. An account's behaviour today matters more than what it posted two years ago. Sample size is shown on every scorecard — a score based on 10 posts is less reliable than one based on 60.</p>
 
@@ -128,8 +131,8 @@
       <p>Certain integrity failures trigger hard-visibility flags that appear on the scorecard regardless of overall grade:</p>
 
       <ul>
-        <li><strong style="color:var(--white);">Undisclosed AI-generated media (M6)</strong> — Synthetic media presented as authentic footage without disclosure</li>
-        <li><strong style="color:var(--white);">Manipulated or doctored media (M7)</strong> — Authentic media edited to change its meaning or remove important context</li>
+        <li><strong style="color: var(--text-primary);">Undisclosed AI-generated media (M6)</strong> — Synthetic media presented as authentic footage without disclosure</li>
+        <li><strong style="color: var(--text-primary);">Manipulated or doctored media (M7)</strong> — Authentic media edited to change its meaning or remove important context</li>
       </ul>
 
       <p>These are not averaged into obscurity by a strong performance elsewhere. They are surfaced directly to readers.</p>
