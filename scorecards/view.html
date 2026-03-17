@@ -11,9 +11,6 @@
 
 <nav class="nav" id="nav">
   <a href="../index.html" class="nav-logo">
-    <div class="nav-logo-mark">
-      <img src="../images/logo.png" alt="OSIRIS">
-    </div>
     <span class="nav-logo-text">OSIRIS</span>
   </a>
   <ul class="nav-links">
@@ -85,17 +82,18 @@
           return 'Failing';
         })();
 
+        // SVG warning icon - sharp triangle with clear exclamation
+        const warnSvg = (color) => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="vertical-align: middle; margin-left: 0.4rem; cursor: help;"><path d="M12 2L1 21h22L12 2z" fill="${color}" opacity="0.15" stroke="${color}" stroke-width="1.5"/><line x1="12" y1="9" x2="12" y2="15" stroke="${color}" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="18" r="1" fill="${color}"/></svg>`;
+
         // Factuality warning
         const factWarning = (() => {
           if (a.factualityScore < 50) {
             return {
-              icon: '⚠',
               color: '#C93D2D',
               text: 'Account shows significant factual inaccuracies'
             };
           } else if (a.factualityScore < 70) {
             return {
-              icon: '⚠',
               color: '#C9A84C',
               text: 'Account shows moderate factual issues'
             };
@@ -123,6 +121,9 @@
         // Content pattern notes
         const patternNotes = a.contentPatternNotes ? `<p style="font-size: 0.95rem; line-height: 1.7; padding: 1rem; background: var(--bg-tertiary); border: 1px solid var(--border); border-top: 2px solid var(--primary); border-radius: 6px; margin-top: 1.5rem; color: var(--text-secondary);">${a.contentPatternNotes}</p>` : '';
 
+        // Check if any middle content exists (tags, flags, notes)
+        const hasMiddleContent = tags || hardFlags.length > 0 || (a.contentFlags && a.contentFlags.length > 0) || a.contentPatternNotes;
+
         document.getElementById('scorecard-content').innerHTML = `
           <div class="container" style="padding: 3rem 0;">
             <div style="margin-bottom: 2rem;">
@@ -130,10 +131,10 @@
             </div>
 
             <!-- Scorecard Container -->
-            <div style="max-width: 680px; background: var(--bg-secondary); border: 1px solid var(--border-light); border-radius: 8px; padding: 2.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+            <div style="max-width: 680px; background: var(--bg-secondary); border: 1px solid var(--border-light); border-radius: 8px; padding: 2.5rem 2.5rem 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
 
               <!-- Account Identity -->
-              <div style="margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem;">
+              <div style="margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-light); display: flex; align-items: center; gap: 1rem;">
                 <img src="${avatarUrl}" alt="${a.handle}" style="width: 64px; height: 64px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
                 <div>
                   <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--text-primary);">${displayName}</div>
@@ -142,9 +143,9 @@
               </div>
 
               <!-- Scores Side by Side -->
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-light);">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
                 <div>
-                  <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.75rem;">CIS Grade</div>
+                  <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.5rem;">CIS Grade</div>
                   <div class="grade-badge ${gc}" style="font-size: 2.5rem; padding: 0.5rem 1rem;">${a.cis}</div>
                   <p style="font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--text-primary); margin-top: 0.75rem;">${gradeDesc}</p>
                   <p style="font-family: 'Inter', sans-serif; font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.5;">Composite score for accuracy, sourcing, and media verification.</p>
@@ -152,7 +153,7 @@
                 <div>
                   <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.75rem;">Factuality</div>
                   <div style="font-family: Georgia, serif; font-size: 2.5rem; font-weight: 700; color: var(--text-primary);">
-                    ${a.factualityScore / 10}<span style="font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 400; color: var(--text-muted); margin-left: 0.35rem;">/ 10</span>${factWarning ? `<span title="${factWarning.text}" style="font-size: 1.5rem; margin-left: 0.5rem; color: ${factWarning.color}; cursor: help;">${factWarning.icon}</span>` : ''}
+                    ${a.factualityScore / 10}<span style="font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 400; color: var(--text-muted); margin-left: 0.35rem;">/ 10</span>${factWarning ? `<span title="${factWarning.text}">${warnSvg(factWarning.color)}</span>` : ''}
                   </div>
                   <div class="fact-bar" style="height: 6px; margin-top: 0.75rem;">
                     <div class="fact-bar-fill" style="width:${a.factualityScore}%; background:${color};"></div>
@@ -161,31 +162,34 @@
                 </div>
               </div>
 
-              <!-- Tags -->
-              ${tags ? `
-              <div style="margin-bottom: 2rem;">
-                <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.75rem;">Position Tags</div>
-                <div class="card-tags">${tags}</div>
-              </div>
-              ` : ''}
+              ${hasMiddleContent ? `
+              <div style="padding: 2rem 0; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
+                ${tags ? `
+                <div style="margin-bottom: 1.5rem;">
+                  <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.75rem;">Position Tags</div>
+                  <div class="card-tags">${tags}</div>
+                </div>
+                ` : ''}
 
-              ${hardFlagsHTML}
+                ${hardFlagsHTML}
 
-              ${contentFlags ? `
-              <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-light);">
-                <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.75rem;">Content Flags</div>
-                ${contentFlags}
-              </div>
-              ` : ''}
+                ${contentFlags ? `
+                <div${tags || hardFlags.length > 0 ? ' style="margin-top: 1.5rem;"' : ''}>
+                  <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.75rem;">Content Flags</div>
+                  ${contentFlags}
+                </div>
+                ` : ''}
 
-              ${patternNotes ? `
-              <div style="margin-top: 2rem;">
-                ${patternNotes}
+                ${patternNotes ? `
+                <div${tags || hardFlags.length > 0 || contentFlags ? ' style="margin-top: 1.5rem;"' : ''}>
+                  ${patternNotes}
+                </div>
+                ` : ''}
               </div>
               ` : ''}
 
               <!-- Footer -->
-              <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-light);">
+              <div style="margin-top: 1rem; padding-top: 1rem; ${hasMiddleContent ? '' : 'border-top: 1px solid var(--border-light);'}">
                 <p style="font-family: 'Inter', sans-serif; font-size: 0.75rem; color: var(--text-muted);">
                   Based on ${a.totalPosts} post${a.totalPosts !== 1 ? 's' : ''} reviewed${a.pendingPosts > 0 ? ` · ${a.pendingPosts} pending verification` : ''} · Last updated ${a.lastUpdated}
                 </p>
