@@ -75,7 +75,7 @@ a:hover { color: var(--primary-light); text-decoration: underline; }
   z-index: 500;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 1rem 3rem;
   background: #0c130f;
   border-bottom: 1px solid #1a2a1f;
@@ -87,7 +87,11 @@ a:hover { color: var(--primary-light); text-decoration: underline; }
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
-.nav-logo {
+.nav-logo,
+.nav-logo:hover {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -100,13 +104,18 @@ a:hover { color: var(--primary-light); text-decoration: underline; }
 
 .nav-logo-text {
   font-family: 'Constantia', Georgia, serif;
-  font-size: 1.1rem;
+  font-size: 1.65rem;
   font-weight: 700;
   letter-spacing: 0.02em;
   color: #c4a24a;
   text-decoration: underline;
   text-decoration-color: #3a7e5b;
   text-underline-offset: 4px;
+  transition: text-decoration-color 0.2s;
+}
+
+.nav-logo:hover .nav-logo-text {
+  text-decoration-color: #6abf8a;
 }
 
 .nav-links {
@@ -129,6 +138,13 @@ a:hover { color: var(--primary-light); text-decoration: underline; }
   text-decoration: none;
 }
 
+.nav-links a.nav-donate {
+  color: #c4a24a;
+}
+.nav-links a.nav-donate:hover {
+  color: #e2c06a;
+}
+
 /* ── LAYOUT ── */
 .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
 .page-wrap { padding-top: 5rem; }
@@ -141,43 +157,50 @@ a:hover { color: var(--primary-light); text-decoration: underline; }
   justify-content: center;
   position: relative;
   padding: 8rem 0 6rem;
-  background: linear-gradient(to bottom, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+  background: linear-gradient(135deg, #1a4a32 0%, #2d6a4a 30%, #3a7e5b 55%, #5ab882 100%);
+  overflow: hidden;
 }
 
 .hero-bg-lines {
-  display: none;
+  position: absolute;
+  top: 10%;
+  right: -20%;
+  width: 65%;
+  height: 120%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
 }
 
 .hero-eyebrow {
   font-family: 'Inter', sans-serif;
   font-size: 0.85rem;
   font-weight: 500;
-  color: var(--text-muted);
+  color: #c4a24a;
   margin-bottom: 1.5rem;
 }
 
 .hero h1 {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-family: 'Constantia', Georgia, serif;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--text-primary);
+  color: #fff;
   max-width: 780px;
-  margin-bottom: 1rem;
-  line-height: 1.1;
-}
-
-.hero h1 em {
-  font-style: italic;
-  color: var(--primary);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
 }
 
 .hero-sub {
   font-size: 1.15rem;
-  color: var(--text-secondary);
-  max-width: 600px;
-  margin: 1rem 0 2.5rem;
+  color: rgba(255,255,255,0.85);
+  max-width: 620px;
+  margin: 0 0 2.5rem;
   font-weight: 400;
-  line-height: 1.7;
+  line-height: 1.8;
 }
 
 .hero-cta {
@@ -223,6 +246,35 @@ a:hover { color: var(--primary-light); text-decoration: underline; }
   color: var(--primary);
   background: var(--bg-secondary);
   text-decoration: none;
+}
+
+.hero .btn-primary {
+  background: #0c130f;
+  border-color: #0c130f;
+  color: #c4a24a;
+}
+.hero .btn-primary:hover {
+  background: #1a2a1f;
+  border-color: #1a2a1f;
+  color: #c4a24a;
+}
+.hero .btn-ghost {
+  background: transparent;
+  border-color: rgba(255,255,255,0.4);
+  color: #fff;
+}
+.hero .btn-ghost:hover {
+  border-color: #fff;
+  color: #fff;
+  background: rgba(255,255,255,0.1);
+}
+
+.hero .btn-primary,
+.hero .btn-ghost {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
 }
 
 .hero-scroll {
@@ -793,13 +845,17 @@ a:hover { color: var(--primary-light); text-decoration: underline; }
   .nav { padding: 1rem 1.5rem; }
   .nav-links { gap: 1.25rem; }
   .container { padding: 0 1.25rem; }
-  .hero h1 { font-size: 2.6rem; }
+  .hero h1 { font-size: 2.2rem; }
+  .hero-bg-lines { opacity: 0.4; }
   .breakdown-grid { grid-template-columns: repeat(3, 1fr); }
   .scorecard-header { gap: 1.25rem; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
 }
 
 @media (max-width: 480px) {
+  .nav { justify-content: space-between; }
+  .nav-logo { position: static; transform: none; }
+  .hero-bg-lines { display: none; }
   .nav-toggle { display: flex; }
   .nav-links {
     display: none;
