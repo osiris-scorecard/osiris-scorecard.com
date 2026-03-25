@@ -39,12 +39,35 @@ function gradeClass(cis) {
   return 'grade-f';
 }
 
-// Factuality bar colour
+// Factuality bar colour (0–10 scale)
 function factBarColor(score) {
-  if (score >= 80) return 'var(--primary-light)';
-  if (score >= 60) return 'var(--accent)';
-  if (score >= 40) return '#C97A2D';
+  if (score >= 8) return 'var(--primary-light)';
+  if (score >= 6) return 'var(--accent)';
+  if (score >= 4) return '#C97A2D';
   return '#C93D2D';
+}
+
+// Source transparency — filled segment count
+function transparencySegments(label) {
+  const map = { 'Full': 5, 'High': 4, 'Moderate': 3, 'Low': 2, 'Opaque': 1 };
+  return map[label] || 0;
+}
+
+// Build segmented bar HTML
+function buildSegBar(label, compact) {
+  const filled = transparencySegments(label);
+  const cls = compact ? 'seg-bar seg-bar-sm' : 'seg-bar';
+  let html = `<div class="${cls}">`;
+  for (let i = 0; i < 5; i++) {
+    html += `<div class="seg-bar-segment${i < filled ? ' filled' : ''}"></div>`;
+  }
+  html += '</div>';
+  return html;
+}
+
+// Factuality bar width as percentage (score is 0–10)
+function factBarWidth(score) {
+  return (score / 10) * 100;
 }
 
 // Build a scorecard card element (HTML string)
@@ -52,11 +75,10 @@ function buildCard(a) {
   const gc = gradeClass(a.cis);
   const color = factBarColor(a.factualityScore);
   const tags = (a.positionTags || []).map(t => `<span class="tag">${t}</span>`).join('');
-  // Extract handle without @ for avatar service
   const handleClean = a.handle.replace('@', '');
   const avatarUrl = `https://unavatar.io/twitter/${handleClean}`;
-  // Use displayName if available, otherwise use handle
   const displayName = a.displayName || a.handle;
+  const autoFlagCount = (a.autoFlags || []).length;
 
   return `
   <a class="scorecard-card" href="scorecards/view.html?id=${a.id}" style="display: flex; flex-direction: column;">
@@ -73,11 +95,19 @@ function buildCard(a) {
       </div>
       <div class="fact-bar-label">
         <span>Factuality</span>
-        <span>${a.factualityScore}%</span>
+        <span>${a.factualityScore} / 10</span>
       </div>
       <div class="fact-bar">
-        <div class="fact-bar-fill" style="width:${a.factualityScore}%; background:${color};"></div>
+        <div class="fact-bar-fill" style="width:${factBarWidth(a.factualityScore)}%; background:${color};"></div>
       </div>
+      <div style="margin-top: 0.6rem;">
+        <div class="fact-bar-label">
+          <span>Source Transparency</span>
+          <span>${a.sourceTransparencyLabel || ''}</span>
+        </div>
+        ${buildSegBar(a.sourceTransparencyLabel || '', true)}
+      </div>
+      ${autoFlagCount > 0 ? `<div style="margin-top: 0.6rem;"><span class="flag-pill flag-auto">${autoFlagCount} flag${autoFlagCount > 1 ? 's' : ''}</span></div>` : ''}
       ${a.summary ? `<div class="card-summary">${a.summary}</div>` : ''}
       ${tags ? `<div class="card-tags">${tags}</div>` : ''}
     </div>
