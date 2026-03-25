@@ -37,6 +37,9 @@
   --grade-d-bg:    #FFF7ED;
   --grade-f:       #991B1B;
   --grade-f-bg:    #FEF2F2;
+
+  --warning:       #C97A2D;
+  --danger:        #C93D2D;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -428,6 +431,7 @@ a:hover { color: var(--primary-light); text-decoration: underline; }
   margin-bottom: 1rem;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -874,13 +878,6 @@ a:hover { color: var(--primary-light); text-decoration: underline; }
 @media (max-width: 480px) {
   .container { padding: 0 1.5rem; }
   .scores-grid { grid-template-columns: 1fr; }
-  .nav { justify-content: space-between; }
-  .nav-logo {
-    position: relative;
-    transform: none;
-    z-index: 20;
-    flex-shrink: 0;
-  }
   .hero-bg-lines { display: none; }
   .nav-toggle { display: flex; }
   .nav-links {

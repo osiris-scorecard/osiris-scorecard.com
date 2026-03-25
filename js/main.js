@@ -43,8 +43,8 @@ function gradeClass(cis) {
 function factBarColor(score) {
   if (score >= 8) return 'var(--primary-light)';
   if (score >= 6) return 'var(--accent)';
-  if (score >= 4) return '#C97A2D';
-  return '#C93D2D';
+  if (score >= 4) return 'var(--warning)';
+  return 'var(--danger)';
 }
 
 // Source transparency — filled segment count

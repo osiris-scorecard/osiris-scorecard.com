@@ -121,9 +121,13 @@ document.querySelectorAll('[data-grade]').forEach(btn => {
 });
 
 // Search
+let searchTimeout;
 document.getElementById('search').addEventListener('input', e => {
   searchTerm = e.target.value;
-  render();
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(() => {
+    render();
+  }, 250);
 });
 </script>
 </body>

@@ -113,9 +113,7 @@
     .then(accounts => {
       const container = document.getElementById('recent-cards');
       const recent = [...accounts].sort((a,b) => new Date(b.lastUpdated) - new Date(a.lastUpdated)).slice(0, 3);
-      recent.forEach(a => {
-        container.innerHTML += buildCard(a);
-      });
+      container.innerHTML = recent.map(a => buildCard(a)).join('');
     });
 </script>
 </body>
