@@ -58,7 +58,7 @@
 
       <h2>2. Scoring Overview</h2>
 
-      <p>Each account receives three distinct primary outputs. These are designed to tell the reader different things, and should be read as a set rather than in isolation.</p>
+      <p>Each account receives multiple distinct outputs designed to tell the reader different things, and should be read as a set rather than in isolation. The primary outputs are the Factuality Score, the Content Integrity Score (CIS), the Source Transparency Tier, and Position and Stance Tags (PST).</p>
 
       <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--text-primary);">Factuality Score (0.0 to 10.0)</h3>
 
@@ -102,6 +102,45 @@
       </table>
 
       <p>Grades may carry + or – modifiers within each band.</p>
+
+      <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--text-primary);">Source Transparency Score & Tier</h3>
+
+      <p>A categorical rating reflecting how transparently the account discloses its sources across the reviewed sample. Source transparency is assessed based on the consistency and clarity with which an account attributes claims to named sources, provides verifiable evidence, or acknowledges when sourcing is limited or unavailable.</p>
+
+      <p>Accounts are assigned to one of five tiers:</p>
+
+      <table class="grade-table">
+        <thead>
+          <tr>
+            <th style="width: 140px;">Tier</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Full</strong></td>
+            <td>Consistently provides clear, verifiable sourcing for claims. Sources are named, linked, or otherwise directly attributable in the vast majority of cases.</td>
+          </tr>
+          <tr>
+            <td><strong>High</strong></td>
+            <td>Regularly provides credible sourcing with occasional gaps. Most claims are grounded in identifiable sources, though some rely on unnamed or inferred sourcing.</td>
+          </tr>
+          <tr>
+            <td><strong>Moderate</strong></td>
+            <td>Mixed transparency. Some posts provide clear sourcing, but a significant portion rely on anonymous, vague, or undisclosed sources.</td>
+          </tr>
+          <tr>
+            <td><strong>Low</strong></td>
+            <td>Limited source disclosure. The account frequently makes claims without stating a basis, or relies predominantly on anonymous or unverifiable sourcing.</td>
+          </tr>
+          <tr>
+            <td><strong>Opaque</strong></td>
+            <td>Systematically fails to disclose sources. The account presents claims with little to no indication of where the information originated.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="margin-top: 1.5rem;">Source transparency is distinct from source quality. An account may consistently name its sources (high transparency) while relying on sources of questionable credibility (low source quality). Both dimensions contribute independently to the overall integrity assessment.</p>
 
       <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--text-primary);">Position and Stance Tags (PST)</h3>
 
@@ -260,6 +299,20 @@
         </tbody>
       </table>
 
+      <h3 style="font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--text-primary);">Source Transparency Assessment</h3>
+
+      <p>In addition to rating individual posts for source quality, the overall pattern of source disclosure across the reviewed sample is assessed to determine the account's Source Transparency Tier (Full, High, Moderate, Low, or Opaque).</p>
+
+      <p>This assessment considers:</p>
+
+      <ul>
+        <li><strong style="color: var(--text-primary);">Consistency of attribution</strong> — Does the account regularly identify where its information comes from, or does it frequently present claims without stating a basis?</li>
+        <li><strong style="color: var(--text-primary);">Specificity of sourcing</strong> — When sources are cited, are they named and verifiable, or vague and unattributable?</li>
+        <li><strong style="color: var(--text-primary);">Acknowledgment of limitations</strong> — Does the account indicate when sourcing is uncertain, anonymous, or unavailable, or does it present all claims with equal confidence regardless of evidential basis?</li>
+      </ul>
+
+      <p>The Source Transparency Tier is calculated across the entire reviewed sample and displayed as a separate output alongside the Factuality Score and CIS grade. It does not directly affect the numerical or letter grade scores but contributes to the broader integrity assessment by reflecting how openly the account operates.</p>
+
       <div class="divider"></div>
 
       <h2>5. Media Integrity</h2>
@@ -327,10 +380,20 @@
             <td>Unknown / Cannot determine</td>
             <td>Media whose origin cannot be determined at the time of review. Treated as pending for media integrity purposes.</td>
           </tr>
+          <tr>
+            <td><strong>M10</strong></td>
+            <td>Correct media, misleading caption</td>
+            <td>Authentic and current media that is accurate to the event described, but presented with a caption or framing that misrepresents what the media actually shows.</td>
+          </tr>
+          <tr>
+            <td><strong>M11 ★</strong></td>
+            <td>Misattributed / false context</td>
+            <td>Media presented with incorrect attribution regarding location, event, date, or participants. The media itself may be authentic, but it is attached to a claim it does not support. Triggers a hard-visibility flag upon reaching a consistency threshold.</td>
+          </tr>
         </tbody>
       </table>
 
-      <p style="margin-top: 1.5rem;"><strong>★</strong> Hard-visibility flags (M6 and M7) appear on the public scorecard regardless of overall CIS grade. They are not averaged into obscurity by a strong performance elsewhere.</p>
+      <p style="margin-top: 1.5rem;"><strong>★</strong> Hard-visibility flags (M6, M7, and M11) appear on the public scorecard regardless of overall CIS grade. They are not averaged into obscurity by a strong performance elsewhere.</p>
 
       <div class="divider"></div>
 

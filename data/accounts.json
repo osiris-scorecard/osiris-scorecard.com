@@ -1,78 +1,57 @@
 [
   {
-    "id": "example-profile-1",
-    "handle": "@ExampleProfile1",
-    "displayName": "Example Profile 1",
-    "cis": "A",
-    "cisDescriptor": "Excellent",
-    "factualityScore": 9.2,
-    "sourceTransparency": 0.90,
-    "sourceTransparencyLabel": "Full",
-    "positionTags": ["Pro-Ukraine"],
+    "id": "sentdefender",
+    "handle": "@sentdefender",
+    "displayName": "OSINTdefender",
+    "cis": "B-",
+    "cisDescriptor": "Good",
+    "factualityScore": 9.3,
+    "sourceTransparency": 0.51,
+    "sourceTransparencyLabel": "Good",
+    "positionTags": [],
     "totalPosts": 25,
     "pendingPosts": 0,
-    "lastUpdated": "20 Mar 2026",
-    "summary": "Example account demonstrating high-quality open-source research practices with strong fact-checking and comprehensive source attribution.",
-    "scoreBreakdown": "",
+    "lastUpdated": "19 Nov 2026",
+    "summary": "During the review period, the factual accuracy of the account's reporting was high. Source attribution was inconsistent: primary and official sources were frequently linked, but a substantial proportion of claims were published without attribution.",
+    "scoreBreakdown": "Factual accuracy: high. The large majority of assessed claims were verified, with isolated instances of overstatement and of early, unconfirmed information being reported as fact. Source attribution: good, though inconsistent. Primary documents, official notices and on-the-record statements were regularly cited, though a significant share of claims carried no attribution. Media handling: generally sound, with credit typically preserved through platform sharing or retained watermarks; stock imagery was used for illustration. Conduct: no rhetorical concerns identified. AI use: no AI-generated media identified.",
     "autoFlags": [],
     "manualFlags": [],
     "frequentSources": [
-      { "name": "AP News", "count": 7, "type": "News agency" },
-      { "name": "Sentinel Hub", "count": 6, "type": "Satellite imagery" },
-      { "name": "BBC Verify", "count": 5, "type": "Fact-checking org" },
-      { "name": "@VerifiedSource", "count": 4, "type": "OSINT account" },
-      { "name": "Academic journals", "count": 3, "type": "Research source" }
+      {
+        "name": "Marco Rubio",
+        "count": 2,
+        "type": "State official"
+      },
+      {
+        "name": "C-SPAN2",
+        "count": 2,
+        "type": "Broadcaster"
+      },
+      {
+        "name": "CNN",
+        "count": 2,
+        "type": "Major news outlet"
+      },
+      {
+        "name": "Volodymyr Zelensky",
+        "count": 2,
+        "type": "State official"
+      },
+      {
+        "name": "UKMTO",
+        "count": 2,
+        "type": "Operational safety notice"
+      }
     ],
-    "relatedAccounts": ["@VerifiedSource"]
-  },
-  {
-    "id": "example-profile-2",
-    "handle": "@ExampleProfile2",
-    "displayName": "Example Profile 2",
-    "cis": "C+",
-    "cisDescriptor": "Fair",
-    "factualityScore": 6.1,
-    "sourceTransparency": 0.50,
-    "sourceTransparencyLabel": "Moderate",
-    "positionTags": ["Pro-Israel", "Anti-Iran"],
-    "totalPosts": 25,
-    "pendingPosts": 2,
-    "lastUpdated": "18 Mar 2026",
-    "summary": "Example account showing moderate reliability with occasional unsourced claims and editorial positioning favoring Israeli and anti-Iranian narratives.",
-    "scoreBreakdown": "Mixed sourcing quality. Several instances of claims presented without verification. Some reliance on partisan secondary sources.",
-    "autoFlags": ["Unsourced media"],
-    "manualFlags": ["Pro-Israel editorial lean"],
-    "frequentSources": [
-      { "name": "State media outlets", "count": 8, "type": "Government source" },
-      { "name": "Anonymous sources", "count": 5, "type": "Unverified source" },
-      { "name": "Reuters", "count": 4, "type": "News agency" },
-      { "name": "Local reporters", "count": 3, "type": "Secondary source" }
-    ],
-    "relatedAccounts": []
-  },
-  {
-    "id": "example-profile-3",
-    "handle": "@ExampleProfile3",
-    "displayName": "Example Profile 3",
-    "cis": "D",
-    "cisDescriptor": "Poor",
-    "factualityScore": 3.8,
-    "sourceTransparency": 0.30,
-    "sourceTransparencyLabel": "Low",
-    "positionTags": ["AI content", "Anti-Trump", "Pro-Russia"],
-    "totalPosts": 25,
-    "pendingPosts": 5,
-    "lastUpdated": "15 Mar 2026",
-    "summary": "Example account demonstrating poor information practices including frequent unverified claims, unreliable sourcing, and manipulated media.",
-    "scoreBreakdown": "High frequency of factual inaccuracies and unsourced claims. Multiple instances of manipulated or mislabeled media. Heavy reliance on anonymous social media sources without verification.",
-    "autoFlags": ["Manipulated media", "Undisclosed AI media", "Unverified claims"],
-    "manualFlags": ["Pro-Russia bias", "AI-generated content"],
-    "frequentSources": [
-      { "name": "Anonymous social accounts", "count": 12, "type": "Unverified source" },
-      { "name": "Telegram channels", "count": 7, "type": "Unverified source" },
-      { "name": "Fringe blogs", "count": 4, "type": "Non-credible source" },
-      { "name": "Unattributed screenshots", "count": 3, "type": "Unverified source" }
-    ],
-    "relatedAccounts": []
+    "relatedAccounts": [
+      "@ByChrisGordon",
+      "@coweddle",
+      "@CENTCOM",
+      "@HighTechAztec",
+      "@MaritimeBul",
+      "@live_ais_com",
+      "@UK_MTO",
+      "@ZelenskyyUa"
+    ]
   }
 ]
