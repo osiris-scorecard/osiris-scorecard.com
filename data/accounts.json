@@ -7,13 +7,38 @@
     "cisDescriptor": "Good",
     "factualityScore": 9.3,
     "sourceTransparency": 0.51,
-    "sourceTransparencyLabel": "Good",
     "positionTags": [],
     "totalPosts": 25,
     "pendingPosts": 0,
     "lastUpdated": "19 Nov 2026",
     "summary": "During the review period, the factual accuracy of the account's reporting was high. Source attribution was inconsistent: primary and official sources were frequently linked, but a substantial proportion of claims were published without attribution.",
-    "scoreBreakdown": "Factual accuracy: high. The large majority of assessed claims were verified, with isolated instances of overstatement and of early, unconfirmed information being reported as fact. Source attribution: good, though inconsistent. Primary documents, official notices and on-the-record statements were regularly cited, though a significant share of claims carried no attribution. Media handling: generally sound, with credit typically preserved through platform sharing or retained watermarks; stock imagery was used for illustration. Conduct: no rhetorical concerns identified. AI use: no AI-generated media identified.",
+    "scoreBreakdown": [
+      {
+        "label": "Factual accuracy",
+        "rating": "High",
+        "text": "The large majority of assessed claims were verified, with isolated instances of overstatement and of early, unconfirmed information being reported as fact."
+      },
+      {
+        "label": "Source attribution",
+        "rating": "Moderate",
+        "text": "Primary documents, official notices and on-the-record statements were regularly cited, but attribution was inconsistent and a significant share of claims carried none."
+      },
+      {
+        "label": "Media handling",
+        "rating": "Sound",
+        "text": "Credit was typically preserved through platform sharing or retained watermarks; stock imagery was used for illustration."
+      },
+      {
+        "label": "Conduct",
+        "rating": "No concerns identified",
+        "text": ""
+      },
+      {
+        "label": "AI use",
+        "rating": "None identified",
+        "text": ""
+      }
+    ],
     "autoFlags": [],
     "manualFlags": [],
     "frequentSources": [

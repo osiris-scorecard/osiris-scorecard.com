@@ -353,22 +353,6 @@ a:hover { color: var(--primary-light); text-decoration: underline; }
   overflow: hidden;
 }
 
-.scorecard-card::after {
-  content: 'EXAMPLE';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-30deg);
-  font-family: 'Inter', sans-serif;
-  font-size: 2rem;
-  font-weight: 800;
-  letter-spacing: 0.15em;
-  color: rgba(0,0,0,0.06);
-  pointer-events: none;
-  white-space: nowrap;
-  z-index: 1;
-}
-
 .scorecard-card:hover {
   border-color: var(--primary);
   box-shadow: 0 2px 6px rgba(0,0,0,0.06);
@@ -379,22 +363,6 @@ a:hover { color: var(--primary-light); text-decoration: underline; }
 .scorecard-view-container {
   position: relative;
   overflow: hidden;
-}
-
-.scorecard-view-container::after {
-  content: 'EXAMPLE';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-30deg);
-  font-family: 'Inter', sans-serif;
-  font-size: 4.5rem;
-  font-weight: 800;
-  letter-spacing: 0.2em;
-  color: rgba(0,0,0,0.05);
-  pointer-events: none;
-  white-space: nowrap;
-  z-index: 1;
 }
 
 .card-top {

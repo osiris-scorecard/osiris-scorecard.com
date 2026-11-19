@@ -96,7 +96,7 @@
         const relatedAccounts = a.relatedAccounts || [];
 
         // Middle content
-        const hasMiddleContent = a.scoreBreakdown || hasFlags || hasSources || tags;
+        const hasMiddleContent = (Array.isArray(a.scoreBreakdown) ? a.scoreBreakdown.length : a.scoreBreakdown) || hasFlags || hasSources || tags;
 
         // Source profile HTML
         const sourceProfileHTML = hasSources ? `
@@ -168,8 +168,8 @@
                 <div>
                   <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.25rem;">Source Transparency</div>
                   <p style="font-family: 'Inter', sans-serif; font-size: 0.75rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 0.75rem;">How much verifiable evidence and sourcing the account provides.</p>
-                  ${buildSegBar(a.sourceTransparencyLabel || '')}
-                  <p style="font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--text-primary); margin-top: 0.75rem;">${a.sourceTransparencyLabel || ''}</p>
+                  ${buildSegBar(a.sourceTransparency)}
+                  <p style="font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--text-primary); margin-top: 0.75rem;">${transparencyLabel(a.sourceTransparency)}</p>
                 </div>
               </div>
 
@@ -185,7 +185,17 @@
                 ${a.scoreBreakdown ? `
                 <div style="margin-bottom: 1.5rem;">
                   <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.75rem;">Score Breakdown</div>
-                  <p style="font-size: 0.95rem; line-height: 1.7; color: var(--text-secondary);">${a.scoreBreakdown}</p>
+                  ${Array.isArray(a.scoreBreakdown) ? `
+                  <dl style="margin: 0;">
+                    ${a.scoreBreakdown.map(item => `
+                    <div style="padding: 0.6rem 0; border-top: 1px solid var(--border-light);">
+                      <dt style="font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--text-primary);">
+                        ${item.label}${item.rating ? `<span style="font-weight: 500; color: var(--text-secondary);"> · ${item.rating}</span>` : ''}
+                      </dt>
+                      ${item.text ? `<dd style="margin: 0.25rem 0 0 0; font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary);">${item.text}</dd>` : ''}
+                    </div>`).join('')}
+                  </dl>
+                  ` : `<p style="font-size: 0.95rem; line-height: 1.7; color: var(--text-secondary);">${a.scoreBreakdown}</p>`}
                 </div>
                 ` : ''}
 

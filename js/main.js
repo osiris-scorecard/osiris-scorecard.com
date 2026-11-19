@@ -47,15 +47,32 @@ function factBarColor(score) {
   return 'var(--danger)';
 }
 
-// Source transparency — filled segment count
-function transparencySegments(label) {
-  const map = { 'Full': 5, 'High': 4, 'Moderate': 3, 'Low': 2, 'Opaque': 1 };
-  return map[label] || 0;
+// Source transparency — the data holds a number only (sourceTransparency, 0–1).
+// The site derives the tier wording and the filled segments from it:
+// five equal bands, one per bar segment.
+const TRANSPARENCY_TIERS = [
+  { min: 0.8, label: 'Full', segments: 5 },
+  { min: 0.6, label: 'High', segments: 4 },
+  { min: 0.4, label: 'Moderate', segments: 3 },
+  { min: 0.2, label: 'Low', segments: 2 },
+  { min: 0, label: 'Opaque', segments: 1 },
+];
+
+function transparencyTier(value) {
+  if (value === null || value === undefined || value === '' || isNaN(Number(value))) return null;
+  const v = Number(value);
+  return TRANSPARENCY_TIERS.find(t => v >= t.min) || TRANSPARENCY_TIERS[TRANSPARENCY_TIERS.length - 1];
 }
 
-// Build segmented bar HTML
-function buildSegBar(label, compact) {
-  const filled = transparencySegments(label);
+function transparencyLabel(value) {
+  const t = transparencyTier(value);
+  return t ? t.label : '';
+}
+
+// Build segmented bar HTML from the numeric sourceTransparency value
+function buildSegBar(value, compact) {
+  const t = transparencyTier(value);
+  const filled = t ? t.segments : 0;
   const cls = compact ? 'seg-bar seg-bar-sm' : 'seg-bar';
   let html = `<div class="${cls}">`;
   for (let i = 0; i < 5; i++) {
@@ -103,9 +120,9 @@ function buildCard(a) {
       <div style="margin-top: 0.6rem;">
         <div class="fact-bar-label">
           <span>Source Transparency</span>
-          <span>${a.sourceTransparencyLabel || ''}</span>
+          <span>${transparencyLabel(a.sourceTransparency)}</span>
         </div>
-        ${buildSegBar(a.sourceTransparencyLabel || '', true)}
+        ${buildSegBar(a.sourceTransparency, true)}
       </div>
       ${autoFlagCount > 0 ? `<div style="margin-top: 0.6rem;"><span class="flag-pill flag-auto">${autoFlagCount} flag${autoFlagCount > 1 ? 's' : ''}</span></div>` : ''}
       ${a.summary ? `<div class="card-summary">${a.summary}</div>` : ''}
