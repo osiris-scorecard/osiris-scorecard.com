@@ -29,9 +29,40 @@ if (navToggle) {
   });
 })();
 
-// Grade colour class
-function gradeClass(cis) {
-  const letter = cis.charAt(0).toUpperCase();
+// Grade status — FULL (10+ verifiable claims), PROVISIONAL (5–9) or NOT_GRADED (<5).
+// A missing or unrecognised gradeStatus is treated as FULL.
+function gradeStatusOf(a) {
+  const s = (a && typeof a.gradeStatus === 'string') ? a.gradeStatus.trim().toUpperCase() : '';
+  return (s === 'PROVISIONAL' || s === 'NOT_GRADED') ? s : 'FULL';
+}
+
+// True when a value is a usable numeric score (null, '' and NaN are not)
+function isScore(v) {
+  return typeof v === 'number' && isFinite(v);
+}
+
+// Grade letter (A–F) used by the grade filter, or null when the account has no grade
+function gradeLetter(a) {
+  if (gradeStatusOf(a) === 'NOT_GRADED') return null;
+  const cis = (a && typeof a.cis === 'string') ? a.cis.trim() : '';
+  return cis ? cis.charAt(0).toUpperCase() : null;
+}
+
+// Tooltip text for provisional grades and scores
+function provisionalTitle(a) {
+  const n = a && Number.isInteger(a.verifiableClaims) ? a.verifiableClaims : null;
+  return n !== null
+    ? `Provisional: based on ${n} independently verifiable claim${n === 1 ? '' : 's'}`
+    : 'Provisional: based on a limited set of independently verifiable claims';
+}
+
+// Grade colour class. Takes the account object (a bare CIS string is still accepted).
+// Never throws on a null grade.
+function gradeClass(a) {
+  const acct = (a && typeof a === 'object') ? a : { cis: a };
+  if (gradeStatusOf(acct) !== 'FULL') return 'grade-provisional';
+  const letter = gradeLetter(acct);
+  if (!letter) return 'grade-provisional';
   if (letter === 'A') return 'grade-a';
   if (letter === 'B') return 'grade-b';
   if (letter === 'C') return 'grade-c';
@@ -89,13 +120,42 @@ function factBarWidth(score) {
 
 // Build a scorecard card element (HTML string)
 function buildCard(a) {
-  const gc = gradeClass(a.cis);
-  const color = factBarColor(a.factualityScore);
+  const status = gradeStatusOf(a);
+  const gc = gradeClass(a);
   const tags = (a.positionTags || []).map(t => `<span class="tag">${t}</span>`).join('');
   const handleClean = a.handle.replace('@', '');
   const avatarUrl = `https://unavatar.io/twitter/${handleClean}`;
   const displayName = a.displayName || a.handle;
   const autoFlagCount = (a.autoFlags || []).length;
+
+  // Grade badge and factuality row for each grade status
+  let badgeHTML, factLabelHTML, factBarHTML;
+  if (status === 'FULL') {
+    const color = factBarColor(a.factualityScore);
+    badgeHTML = `<div class="grade-badge ${gc}">${a.cis}</div>`;
+    factLabelHTML = `<span>${a.factualityScore} / 10</span>`;
+    factBarHTML = `<div class="fact-bar">
+        <div class="fact-bar-fill" style="width:${factBarWidth(a.factualityScore)}%; background:${color};"></div>
+      </div>`;
+  } else {
+    const provisional = status === 'PROVISIONAL';
+    const hasGrade = provisional && gradeLetter(a) !== null;
+    const hasScore = provisional && isScore(a.factualityScore);
+    const tip = provisional ? provisionalTitle(a) : '';
+    badgeHTML = `<div class="grade-badge-stack"${tip ? ` title="${tip}"` : ''}>
+          <div class="grade-badge ${gc}">${hasGrade ? a.cis : '–'}</div>
+          <span class="grade-status-label">${hasGrade ? 'Provisional' : 'Not graded'}</span>
+        </div>`;
+    if (hasScore) {
+      factLabelHTML = `<span class="fact-value-provisional" title="${tip}">${a.factualityScore} / 10 · provisional</span>`;
+      factBarHTML = `<div class="fact-bar" title="${tip}">
+        <div class="fact-bar-fill fact-bar-fill-provisional" style="width:${factBarWidth(a.factualityScore)}%;"></div>
+      </div>`;
+    } else {
+      factLabelHTML = `<span class="fact-value-provisional">Not assessable</span>`;
+      factBarHTML = `<div class="fact-bar"></div>`;
+    }
+  }
 
   return `
   <a class="scorecard-card" href="scorecards/view.html?id=${a.id}" style="display: flex; flex-direction: column;">
@@ -108,15 +168,13 @@ function buildCard(a) {
             <div class="card-handle">${a.handle}</div>
           </div>
         </div>
-        <div class="grade-badge ${gc}">${a.cis}</div>
+        ${badgeHTML}
       </div>
       <div class="fact-bar-label">
         <span>Factuality</span>
-        <span>${a.factualityScore} / 10</span>
+        ${factLabelHTML}
       </div>
-      <div class="fact-bar">
-        <div class="fact-bar-fill" style="width:${factBarWidth(a.factualityScore)}%; background:${color};"></div>
-      </div>
+      ${factBarHTML}
       <div style="margin-top: 0.6rem;">
         <div class="fact-bar-label">
           <span>Source Transparency</span>

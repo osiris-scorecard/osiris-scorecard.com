@@ -95,7 +95,9 @@ function render() {
   const countEl = document.getElementById('result-count');
 
   let filtered = allAccounts.filter(a => {
-    const gradeMatch = activeGrade === 'all' || a.cis.charAt(0) === activeGrade;
+    // gradeLetter() is null for NOT_GRADED accounts, so they appear only under "All grades";
+    // provisional grades appear under their letter.
+    const gradeMatch = activeGrade === 'all' || gradeLetter(a) === activeGrade;
     const q = searchTerm.toLowerCase();
     const textMatch = !q ||
       (a.handle || '').toLowerCase().includes(q) ||

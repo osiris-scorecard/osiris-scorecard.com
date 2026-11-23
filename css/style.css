@@ -37,6 +37,10 @@
   --grade-d-bg:    #FFF7ED;
   --grade-f:       #991B1B;
   --grade-f-bg:    #FEF2F2;
+  /* Provisional / ungraded: neutral grey, not a penalty colour.
+     #6B7280 on #F9FAFB ≈ 4.6:1, on white ≈ 4.8:1 */
+  --grade-provisional:    #6B7280;
+  --grade-provisional-bg: #F9FAFB;
 
   --warning:       #C97A2D;
   --danger:        #C93D2D;
@@ -331,6 +335,57 @@ a:hover { color: var(--primary-light); text-decoration: underline; }
 .grade-c { background: var(--grade-c-bg); border-color: var(--grade-c); color: var(--grade-c); }
 .grade-d { background: var(--grade-d-bg); border-color: var(--grade-d); color: var(--grade-d); }
 .grade-f { background: var(--grade-f-bg); border-color: var(--grade-f); color: var(--grade-f); }
+
+/* Provisional (5–9 verifiable claims) and not graded (<5): grey, dashed border */
+.grade-provisional {
+  background: var(--grade-provisional-bg);
+  border-color: var(--grade-provisional);
+  border-style: dashed;
+  color: var(--grade-provisional);
+}
+
+/* Badge with its status label underneath (cards) */
+.grade-badge-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+  margin-left: 0.75rem;
+}
+
+/* "Provisional" / "Not graded" pill */
+.grade-status-label {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  padding: 0.1rem 0.5rem;
+  border: 1px dashed var(--grade-provisional);
+  border-radius: 10px;
+  color: var(--grade-provisional);
+  background: var(--grade-provisional-bg);
+  white-space: nowrap;
+}
+
+/* Greyed factuality value and bar fill */
+.fact-value-provisional { color: var(--grade-provisional); font-style: italic; }
+.fact-bar-fill.fact-bar-fill-provisional { background: var(--grade-provisional); }
+
+/* Explanatory note under the grades on a scorecard page */
+.grade-status-note {
+  margin: 1.25rem 0 1.5rem;
+  padding: 0.85rem 1rem;
+  border-left: 3px dashed var(--grade-provisional);
+  background: var(--bg-tertiary);
+  border-radius: 0 4px 4px 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+.grade-status-note strong { color: var(--text-primary); }
 
 /* ── SCORECARD CARD ── */
 .scorecard-grid {
